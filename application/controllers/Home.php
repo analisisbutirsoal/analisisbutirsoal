@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_Home extends CI_Controller {
+class Home extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->library('email');
-        $this->load->model('M_user');
+        $this->load->model('M_Guru');
     }
 	public function index()
 	{
-		$this->load->view('home');
+		$this->load->view('V_home');
 	}
 	public function login()
 	{
@@ -19,12 +19,12 @@ class C_Home extends CI_Controller {
 
 		if (isset($username) && isset($password)) {
 			if ($username == "admin" && $password == "admin864") {
-				$this->load->view('dashboard');
+				redirect('admin');
 			} else {
 				$user = $this->M_user->getUser($username);
 				if ($this->M_user->cekUsername($username) > 0) {
 					if ($password == $user['password']) {
-						$this->load->view('dashboard');
+						
 					} else {
 						echo "
 						<script>

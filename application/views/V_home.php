@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </h5>
                 </div>
                 <div class="modal-body"> <!-- Default form login -->
-                    <form class="text-center border border-light p-3" method="post" action="<?= base_url('index.php/c_home/login');?>">
+                    <form class="text-center border border-light p-3" method="post" action="<?= base_url('index.php/home/login');?>">
                         <input type="text" name="username" id="defaultLoginFormUsername" class="form-control mb-4" placeholder="Username" required>
                         <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" minlength="8" required>
                         <!-- Sign in button -->
@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </h5>
                 </div>
                 <div class="modal-body"> 
-                    <form class="text-center border border-light p-3" method="post" action="<?= base_url('index.php/c_home/aktivasi');?>">
+                    <form class="text-center border border-light p-3" method="post" action="<?= base_url('index.php/home/aktivasi');?>">
                     <input type="text"  name="Id" id="Id" class="form-control mb-4" placeholder="Masukkan Nomor Induk" required>
                     <input type="email" name="Email" id="Email" class="form-control mb-4" placeholder="Masukkan Email" required>
                         <!-- Sign in button -->
