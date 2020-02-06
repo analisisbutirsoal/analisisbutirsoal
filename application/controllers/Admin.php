@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
 	public function __construct() {
         parent::__construct();
+        $this->load->model('M_User');
         $this->load->model('M_Guru');
     }
 	public function index()
@@ -26,17 +27,28 @@ class Admin extends CI_Controller {
         $this->load->view('admin/footer');
 
         if (isset($_POST['submit'])) {
-            $data['username'] = $this->input->post('username');
-            if ($this->M_Guru->cekUsername($data['username']) > 0) {
+            $guru['nip/nik'] = $this->input->post('username');
+            $guru['nama'] = $this->input->post('nama');
+            if ($this->M_User->cekUsername($guru['nip/nik']) > 0) {
                 echo "
                     <script>
                         alert('Data sudah ada');
                     </script>";
 
             } else {
-                $this->M_Guru->addGuru($data);
+                $this->M_Guru->addGuru($guru);
+                $user['username'] = $guru['nip/nik'];
+                $user['level'] = "Guru";
+                $this->M_User->addUser($user);
                 redirect('admin/daftarGuru');
             }
         }
+    }
+    public function editGuru($id)
+    {
+        $data['edit'] = $this->M_Guru->getGuru($id);
+        $this->load->view('admin/header');
+        $this->load->view('v_editGuru', $data);
+        $this->load->view('admin/footer');
     }
 }

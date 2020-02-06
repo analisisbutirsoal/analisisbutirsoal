@@ -19,19 +19,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/normalize.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/meanmenu.min.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/main.css">
+    <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/form/all-type-forms.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/educate-custon-icon.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/morrisjs/morris.css">
+    <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/dropzone/dropzone.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/scrollbar/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/metisMenu/metisMenu.min.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/metisMenu/metisMenu-vertical.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/calendar/fullcalendar.min.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/calendar/fullcalendar.print.min.css">
-    <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/editor/select2.css">
-    <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/editor/datetimepicker.css">
-    <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/editor/bootstrap-editable.css">
-    <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/editor/x-editor-style.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/data-table/bootstrap-table.css">
-    <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/data-table/bootstrap-editable.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/style.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/responsive.css">
     <script src="<?=base_url();?>/asset/themee/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -63,7 +60,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a href="<?= site_url("admin/daftarGuru")?>"><span class="mini-sub-pro">Daftar Guru</span></a></li>
                                 <li><a href="<?= site_url("admin/addGuru")?>"><span class="mini-sub-pro">Tambahkan Guru</span></a></li>
-                                <li><a href="<?= site_url("admin/editGuru")?>"><span class="mini-sub-pro">Edit Data Guru</span></a></li>
                             </ul>
                         </li>
                         <li>
@@ -71,7 +67,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a href="#"><span class="mini-sub-pro">Daftar Siswa</span></a></li>
                                 <li><a href="#"><span class="mini-sub-pro">Tambahkan Siswa</span></a></li>
-                                <li><a href="#"><span class="mini-sub-pro">Edit Data Siswa</span></a></li>
                             </ul>
                         </li>
                         <li>
@@ -79,7 +74,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a href="#"><span class="mini-sub-pro">Daftar Kelas</span></a></li>
                                 <li><a href="#"><span class="mini-sub-pro">Tambahkan Kelas</span></a></li>
-                                <li><a href="#"><span class="mini-sub-pro">Edit Info Kelas</span></a></li>
                             </ul>
                         </li>
                         <li>
@@ -87,7 +81,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a href="#"><span class="mini-sub-pro">Daftar Mapel</span></a></li>
                                 <li><a href="#"><span class="mini-sub-pro">Tambahkan Mapel</span></a></li>
-                                <li><a href="#"><span class="mini-sub-pro">Edit Info Mapel</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -184,13 +177,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-															<img src="<?=base_url();?>/asset/themee/img/product/pro4.jpg" alt="" />
-															<span class="admin-name">Prof.Anderson</span>
+															<img src="<?=base_url();?>/asset/themee/img/user.png" alt="" />
+															<span class="admin-name"><?= $this->session->userdata('level');?></span>
 															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li><a href="#">Akun Saya</a></li>
-                                                        <li><a href="#">Logout</a></li>
+                                                        <li><a href="<?= site_url('home/logout')?>">Logout</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>

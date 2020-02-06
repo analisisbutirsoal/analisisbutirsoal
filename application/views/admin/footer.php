@@ -21,19 +21,11 @@
     <script src="<?= base_url();?>/asset/themee/js/scrollbar/mCustomScrollbar-active.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/data-table/bootstrap-table.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/data-table/tableExport.js"></script>
-    <script src="<?= base_url();?>/asset/themee/js/data-table/data-table-active.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/data-table/bootstrap-table-editable.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/data-table/bootstrap-editable.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/data-table/bootstrap-table-resizable.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/data-table/colResizable-1.5.source.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/data-table/bootstrap-table-export.js"></script>
-    <script src="<?= base_url();?>/asset/themee/js/editable/jquery.mockjax.js"></script>
-    <script src="<?= base_url();?>/asset/themee/js/editable/mock-active.js"></script>
-    <script src="<?= base_url();?>/asset/themee/js/editable/select2.js"></script>
-    <script src="<?= base_url();?>/asset/themee/js/editable/moment.min.js"></script>
-    <script src="<?= base_url();?>/asset/themee/js/editable/bootstrap-datetimepicker.js"></script>
-    <script src="<?= base_url();?>/asset/themee/js/editable/bootstrap-editable.js"></script>
-    <script src="<?= base_url();?>/asset/themee/js/editable/xediable-active.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/counterup/jquery.counterup.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/counterup/waypoints.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/counterup/counterup-active.js"></script>
@@ -52,6 +44,12 @@
     <script src="<?= base_url();?>/asset/themee/js/calendar/fullcalendar-active.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/chart/jquery.peity.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/peity/peity-active.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/jquery.maskedinput.min.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/masking-active.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/datepicker/jquery-ui.min.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/datepicker/datepicker-active.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/form-validation/jquery.form.min.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/form-validation/jquery.validate.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/tab.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/plugins.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/main.js"></script>

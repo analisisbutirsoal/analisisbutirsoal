@@ -3439,13 +3439,13 @@ li.multipleInput-email {
 	border-radius: 2px;
 }
 
-li.multipleInput-email a {
+/* li.multipleInput-email a {
 	background: #none;
 	color: #fff;
 	margin-left: 4px;
 	display: inline-block;
 	padding: 0px 1px;
-}
+} */
 
 .form-horizontal .control-label {
 	padding-top: 10px;
@@ -6291,4 +6291,18 @@ div#sparklinehome canvas {
 .footer-copy-right a {
 	color: #fff;
 	text-decoration: none;
+}
+.image-upload{
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+.image-upload > input {
+	display: none;
+}
+
+.image-upload img {
+	width: 250px;
+	cursor: pointer;
 }

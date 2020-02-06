@@ -7,10 +7,21 @@ class Home extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('email');
         $this->load->model('M_Guru');
+        $this->load->model('M_user');
     }
 	public function index()
 	{
-		$this->load->view('V_home');
+		if (isset($_SESSION['level'])) {
+			if ($_SESSION['level'] == "Admin") {
+				redirect('admin');
+			} elseif ($_SESSION['level'] == "Guru") {
+				# code...
+			} else {
+				# code...
+			}
+		} else {
+			$this->load->view('V_home');
+		}
 	}
 	public function login()
 	{
@@ -19,12 +30,25 @@ class Home extends CI_Controller {
 
 		if (isset($username) && isset($password)) {
 			if ($username == "admin" && $password == "admin864") {
+				$this->session->set_userdata('level', 'Admin');
 				redirect('admin');
 			} else {
 				$user = $this->M_user->getUser($username);
 				if ($this->M_user->cekUsername($username) > 0) {
 					if ($password == $user['password']) {
-						
+						if ($user['level'] == "Guru") {
+							$ses = array(
+								'level' => $user['level'],
+								'username' => $user['username']);
+							$this->session->set_userdata($ses);
+							redirect('guru');
+						} else if ($user['level'] == "Siswa") {
+							$ses = array(
+								'level' => $user['level'],
+								'username' => $user['username']);
+							$this->session->set_userdata($ses);
+							redirect('siswa');
+						}
 					} else {
 						echo "
 						<script>
@@ -37,6 +61,10 @@ class Home extends CI_Controller {
 						alert('Akun anda tidak terdaftar');
 					</script>";
 				}
+				echo "
+					<script type='text/javascript'>
+						window.location.replace(location.origin+/ontest/);
+					</script> ";
 			}
 		} 
 	}
@@ -121,4 +149,9 @@ class Home extends CI_Controller {
 			return true;
 		}
 	}
+	public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url());
+    }
 }

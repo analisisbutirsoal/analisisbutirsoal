@@ -7,16 +7,15 @@ class M_Guru extends CI_Model
     {
         return $this->db->insert('guru', $data);
     }   
-    public function cekUsername($username)
-    {
-        return $this->db->get_where('guru', array('username' => $username))->num_rows();
-    }
-    public function getGuru($username)
-    {
-        return $this->db->get_where('guru', array('username' => $username))->row_array();
-    }
     public function listGuru()
     {
-        return $this->db->get('guru')->result_array();
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('guru', 'guru.nip_nik = user.username');
+        return $this->db->get()->result_array();
+    }
+    public function getGuru($id)
+    {
+        return $this->db->get_where('guru', array('nip_nik' => $id))->result_array();
     }
 }
