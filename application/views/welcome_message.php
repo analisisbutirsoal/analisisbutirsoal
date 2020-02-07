@@ -68,8 +68,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1><?= $email?></h1>
-
+	<h1>hh</h1>
+	<?php foreach ($edit as $kls) {
+		echo $kls;
+	}?>
 	<div id="body">
 		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 

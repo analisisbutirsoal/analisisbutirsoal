@@ -53,5 +53,13 @@
     <script src="<?= base_url();?>/asset/themee/js/tab.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/plugins.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/main.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/chosen/chosen.jquery.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/chosen/chosen-active.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/select2/select2.full.min.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/select2/select2-active.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/ionRangeSlider/ion.rangeSlider.min.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/ionRangeSlider/ion.rangeSlider.active.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/input-mask/jasny-bootstrap.min.js"></script>
+    
 </body>
 </html>

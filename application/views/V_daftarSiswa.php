@@ -6,7 +6,7 @@
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd">
-                            <h3>Daftar Guru</h3>
+                            <h3>Daftar Siswa</h3>
                         </div>
                     </div>
                     <div class="sparkline13-graph">
@@ -16,34 +16,32 @@
                                 <thead>
                                     <tr>
                                         <th data-field="state" data-checkbox="true"></th>
-                                        <th data-field="username">NIP/NIK</th>
+                                        <th data-field="username">Nomor Induk</th>
                                         <th data-field="nama" data-editable="true">Nama Lengkap</th>
                                         <th data-field="alamat" data-editable="true">Alamat</th>
                                         <th data-field="email" data-editable="true">Email</th>
                                         <th data-field="phone" data-editable="true">Phone</th>
-                                        <th data-field="jabatan" data-editable="true">Jabatan</th>
-                                        <th data-field="mapel" data-editable="true">Mapel</th>
+                                        <th data-field="kelas" data-editable="true">Kelas</th>
                                         <th data-field="active" data-editable="true">Status</th>
                                         <th data-field="action">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($guru as $guru) : ?>
+                                    <?php foreach ($siswa as $sis) : ?>
                                     <tr>
                                         <td></td>
-                                        <td><?= $guru['nip_nik']?></td>
-                                        <td><?= $guru['nama']?></td>
-                                        <td><?= $guru['alamat']?></td>
-                                        <td><?= $guru['email']?></td>
-                                        <td><?= $guru['phone']?></td>
-                                        <td><?= $guru['jabatan']?></td>
-                                        <td>Mapel</td>
-                                        <td><?php if ($guru['active'] == 1) {
+                                        <td><?= $sis['nisn']?></td>
+                                        <td><?= $sis['nama']?></td>
+                                        <td><?= $sis['alamat']?></td>
+                                        <td><?= $sis['email']?></td>
+                                        <td><?= $sis['phone']?></td>
+                                        <td><?= $sis['kelas']?></td>
+                                        <td><?php if ($sis['active'] == 1) {
                                             echo "Aktif";
                                         } else {
                                             echo "Tidak Aktif";
                                         }?></td>
-                                        <td><a href="<?= site_url("admin/editGuru/".$guru['nip_nik'])?>"><i class="fa fa-edit"></i></a></td>
+                                        <td><a href="<?= site_url("admin/editSiswa/".$sis['nisn'])?>"><i class="fa fa-edit"></i></a></td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
