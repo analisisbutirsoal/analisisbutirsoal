@@ -5,33 +5,34 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-payment-inner-st">
                     <div id="dropzone1" class="pro-ad">
-                        <h3>Tambahkan Data Siswa</h3>
-                        <form action="<?= site_url("admin/addSiswa")?>" method="post" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                        <h3>Tambahkan Mata Pelajaran</h3>
+                        <form action="<?= site_url("admin/addMapel")?>" method="post" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <input name="username" type="text" class="form-control" placeholder="Nomor Induk (Username)">
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="nama" type="text" class="form-control" placeholder="Nama Lengkap">
+                                        <input name="nama_mapel" type="text" class="form-control" placeholder="Nama Mata Pelajaran">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6">
-                                        <select name="kelas" data-placeholder="Kelas" class="chosen-select" tabindex="-1" required>
-                                            <?php foreach($kelas as $kls) : ?>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <select name="guru" data-placeholder="Pilih Guru" class="chosen-select" tabindex="-1">
+                                            <?php foreach($guru as $guru) : ?>
                                             <option value=""></option>
-                                            <option value="<?= $kls['kelas']?>"><?= $kls['kelas']?></option>
-                                            <?php endforeach; ?>
+                                            <option value="<?= $guru['nip_nik']?>"><?= $guru{'nama'}?></option>
+                                            <?php endforeach;?>
                                         </select>
                                     </div>
-                                    <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6">
-                                        <select name="tahun" data-placeholder="Tahun Ajaran" class="chosen-select" tabindex="-1" required>
-                                            <?php foreach($tahun as $thn) : ?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <select multiple name="kelas[]" data-placeholder="Pilih Kelas" class="chosen-select" tabindex="-1">
+                                            <?php foreach($kelas as $kls) :?>
                                             <option value=""></option>
-                                            <option value="<?= $thn['tahun']?>"><?= $thn['tahun']?></option>
+                                            <option value="<?= $kls['kd_kelas']?>"><?= $kls['kelas'].' '.$kls['tahun']?></option>
                                             <?php endforeach;?>
                                         </select>
                                     </div>

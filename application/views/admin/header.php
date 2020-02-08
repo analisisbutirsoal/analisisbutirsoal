@@ -84,8 +84,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <li>
                             <a title="Mapel" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Mata Pelajaran</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a href="#"><span class="mini-sub-pro">Daftar Mapel</span></a></li>
-                                <li><a href="#"><span class="mini-sub-pro">Tambahkan Mapel</span></a></li>
+                                <li><a href="<?= site_url("admin/daftarMapel")?>"><span class="mini-sub-pro">Daftar Mapel</span></a></li>
+                                <li><a href="<?= site_url("admin/addMapel")?>"><span class="mini-sub-pro">Tambahkan Mapel</span></a></li>
                             </ul>
                         </li>
                     </ul>

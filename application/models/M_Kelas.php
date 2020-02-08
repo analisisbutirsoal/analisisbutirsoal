@@ -36,4 +36,8 @@ class M_Kelas extends CI_Model
     {
         return $this->db->get_where('kelas', array('kd_kelas' => $id))->result_array();
     }
+    public function getLast()
+    {
+        return $this->db->get('kelas')->last_row('array');
+    }
 }

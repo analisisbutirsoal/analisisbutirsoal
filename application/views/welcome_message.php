@@ -69,8 +69,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
 	<h1>hh</h1>
-	<?php foreach ($edit as $kls) {
-		echo $kls;
+	<?php foreach ($guru as $kls) {
+		var_dump($kls);
 	}?>
 	<div id="body">
 		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
