@@ -29,7 +29,10 @@
                                         <td><?= $mapel['nama_mapel']?></td>
                                         <td><?= $mapel['kelas'].' '.$mapel['tahun']?></td>
                                         <td><?= $mapel['nama']?></td>
-                                        <td><a href="<?= site_url("admin/editMapel/".$mapel['kd_mapel'])?>"><i class="fa fa-edit"></i></a></td>
+                                        <td>
+                                            <a href="<?= site_url("admin/editMapel/".$mapel['kd_mapel'])?>"><i class="fa fa-pencil-square-o" style="margin-right: 10px " aria-hidden="true"></i></a>
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>

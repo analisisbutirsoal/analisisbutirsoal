@@ -6,7 +6,6 @@
 
 .bootstrap-table .table {
     margin-bottom: 0 !important;
-    border-bottom: 1px solid #dddddd;
     border-collapse: collapse !important;
     border-radius: 1px;
 }
@@ -32,7 +31,7 @@
 .fixed-table-container {
     position: relative;
     clear: both;
-    border: 1px solid #dddddd;
+    /* border: 1px solid #dddddd; */
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -48,7 +47,7 @@
 }
 
 .fixed-table-footer {
-    border-top: 1px solid #dddddd;
+    /* border-top: 1px solid #dddddd; */
 }
 
 .fixed-table-body {
@@ -65,7 +64,7 @@
     height: 0;
     padding: 0;
     margin: 0;
-    border-left: 1px solid #dddddd;
+    /* border-left: 1px solid #dddddd; */
 }
 
 .fixed-table-container thead th:focus {
@@ -79,14 +78,20 @@
     -moz-border-radius-topleft: 4px;
 }
 
-.fixed-table-container thead th .th-inner,
-.fixed-table-container tbody td .th-inner {
-    padding: 8px;
+.fixed-table-container thead th .th-inner {
+    padding: 8px 0;
     line-height: 24px;
     vertical-align: top;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+.fixed-table-container tbody td .th-inner {
+	line-height: 24px;
+	vertical-align: top;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .fixed-table-container thead th .sortable {
@@ -113,7 +118,7 @@
 }
 
 .fixed-table-container tbody td {
-    border-left: 1px solid #dddddd;
+    /* border-left: 1px solid #dddddd; */
 }
 
 .fixed-table-container tbody tr:first-child td {
@@ -134,7 +139,7 @@
 }
 
 .fixed-table-container .bs-checkbox .th-inner {
-    padding: 8px 0;
+    padding: 6px 0 5px 6px;
 }
 
 .fixed-table-container input[type="radio"],
@@ -266,7 +271,12 @@
 
 .bootstrap-table .table > thead > tr > th {
     vertical-align: bottom;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
+    text-align: left;
+    padding-left: 10px !important;
+    padding-right: 5px !important;
+    font-size: 14px;
+    
 }
 
 /* support bootstrap 3 */

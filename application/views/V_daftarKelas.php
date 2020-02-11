@@ -27,7 +27,10 @@
                                         <td></td>
                                         <td><?= $kls['kelas']?></td>
                                         <td><?= $kls['tahun']?></td>
-                                        <td><a href="<?= site_url("admin/editKelas/".$kls['kd_kelas'])?>"><i class="fa fa-edit"></i></a></td>
+                                        <td>
+                                            <a href="<?= site_url("admin/editKelas/".$kls['kd_kelas'])?>"><i class="fa fa-pencil-square-o" style="margin-right: 10px " aria-hidden="true"></i></a>
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>

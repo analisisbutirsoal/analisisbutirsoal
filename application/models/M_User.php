@@ -15,4 +15,9 @@ class M_User extends CI_Model
     {
         return $this->db->get_where('user', array('username' => $username))->row_array();
     }
+    public function updateData($data, $username)
+    {
+        $this->db->where('username', $username);
+        return $this->db->update('user', $data);
+    }
 }

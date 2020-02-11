@@ -7,7 +7,7 @@ class Home extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('email');
         $this->load->model('M_Guru');
-        $this->load->model('M_user');
+        $this->load->model('M_User');
     }
 	public function index()
 	{
@@ -33,9 +33,9 @@ class Home extends CI_Controller {
 				$this->session->set_userdata('level', 'Admin');
 				redirect('admin');
 			} else {
-				$user = $this->M_user->getUser($username);
-				if ($this->M_user->cekUsername($username) > 0) {
-					if ($password == $user['password']) {
+				$user = $this->M_User->getUser($username);
+				if ($this->M_User->cekUsername($username) > 0) {
+					if (md5($password) == $user['password']) {
 						if ($user['level'] == "Guru") {
 							$ses = array(
 								'level' => $user['level'],
@@ -73,14 +73,16 @@ class Home extends CI_Controller {
 		$username = $this->input->post('Id');
         $email = $this->input->post('Email');
         $data['username'] = $username;
-        $data['email'] = $email;
+		$data['email'] = $email;
+		$user = $this->M_User->cekUsername($username);
 
 		if (isset($username) && isset($email)) {
-			if ($this->M_user->cekUsername($username) > 0) {
+			if ($user['active'] == 1) {
 				echo "
-				<script>
-					alert('Akun anda sudah aktif');
-				</script>";
+					<script>
+						alert('Akun anda sudah aktif');
+					</script>";
+
 			} elseif (filter_var($email, FILTER_VALIDATE_EMAIL) == FALSE) {
 				echo "
 				<script>
@@ -89,15 +91,21 @@ class Home extends CI_Controller {
 				";
 			} else {
 				$pass = $this->randomPass();
-				$data['password'] = $pass;
+				$data['password'] = md5($pass);
+				$data['active'] = 1;
 				if ($this->sendEmail($username, $email, $pass) == TRUE) {
-					$this->M_user->addUser($data);
+					$this->M_User->updateData($data, $username);
+					echo "
+						<script>
+							alert('Akun berhasil diaktivasi silakan cek email anda!');
+						</script>
+						";
 				}
 			}
 			echo "
-			<script>
-				window.location.href = '" . base_url() . "';
-			</script>";
+					<script type='text/javascript'>
+						window.location.replace(location.origin+/ontest/);
+					</script> ";
 		}
 	}
 	public function randomPass()

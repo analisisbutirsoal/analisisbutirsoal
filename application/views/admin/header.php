@@ -58,9 +58,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </a>
                         </li>
                         <li>
-                            <a title="Kegiatan" href="#" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Kegiatan</span></a>
-                        </li>
-                        <li>
                             <a title="Guru" class="has-arrow" href="<?= site_url("admin/daftarGuru")?>" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Guru</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a href="<?= site_url("admin/daftarGuru")?>"><span class="mini-sub-pro">Daftar Guru</span></a></li>
@@ -210,7 +207,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 <nav id="dropdown">
                                     <ul class="mobile-menu-nav">
                                         <li><a data-toggle="collapse" data-target="#Charts" href="#">Dashboard<span class="admin-project-icon edu-icon"></span></a></li>
-                                        <li><a href="#">Kegiatan</a></li>
                                         <li><a data-toggle="collapse" data-target="#demoevent" href="#">Guru<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demoevent" class="collapse dropdown-header-top">
                                                 <li><a href="<?= site_url("admin/daftarGuru")?>">Daftar Guru</a></li>

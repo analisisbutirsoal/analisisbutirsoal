@@ -19,7 +19,7 @@ class M_Siswa extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('siswa s');
-        $this->db->join('kelas k', 'k.kd_kelas = s.grade', 'inner');
+        $this->db->join('kelas k', 'k.kd_kelas = s.kelas', 'inner');
         $this->db->join('user u', 'u.username = s.nisn', 'inner');
         $this->db->where('s.nisn', $id);
         return $this->db->get()->result_array();

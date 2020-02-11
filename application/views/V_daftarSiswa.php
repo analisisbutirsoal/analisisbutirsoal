@@ -41,7 +41,10 @@
                                         } else {
                                             echo "Tidak Aktif";
                                         }?></td>
-                                        <td><a href="<?= site_url("admin/editSiswa/".$sis['nisn'])?>"><i class="fa fa-edit"></i></a></td>
+                                        <td>
+                                            <a href="<?= site_url("admin/editSiswa/".$sis['nisn'])?>"><i class="fa fa-pencil-square-o" style="margin-right: 10px " aria-hidden="true"></i></a>
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>    
+                                        </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
