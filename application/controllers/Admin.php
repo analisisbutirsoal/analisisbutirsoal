@@ -53,6 +53,41 @@ class Admin extends CI_Controller {
         $this->load->view('admin/header');
         $this->load->view('v_editGuru', $data);
         $this->load->view('admin/footer');
+        
+        if (isset($_POST['submitEdit'])) {
+            $field['nip_nik'] = $this->input->post('username');
+            $field['nama'] = $this->input->post('nama');
+            $field['alamat'] = $this->input->post('alamat');
+            $field['phone'] = $this->input->post('phone');
+            $field['jabatan'] = $this->input->post('jabatan');
+
+            if ($field['alamat'] != 'Alamat' || $field['phone'] != 'Phone' || $field['jabatan'] != 'Jabatan') {
+                //upload foto
+                $config['upload_path'] = './upload/guru/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 10240;
+                $this->load->library('upload', $config);
+                if (!empty($_FILES['foto']['name'])) {
+                    if (!$this->upload->do_upload('foto')) {
+                        $error = array('error' => $this->upload->display_errors());
+                        print_r($error);
+                    } else {
+                        $upload = $this->upload->data();
+                        $field['foto'] = $upload['file_name'];
+                        $this->M_Guru->updateGuru($id, $field);
+                        redirect('admin/daftarGuru');
+                    }
+                } else {
+                    $field['foto'] = 'kosong';
+                    $this->M_Guru->updateGuru($id, $field);
+                }
+            }
+        }
+    }
+    public function hapusGuru($id)
+    {
+        $this->M_Guru->hapusGuru($id);
+        redirect('admin/daftarGuru');
     }
     public function daftarSiswa()
     {

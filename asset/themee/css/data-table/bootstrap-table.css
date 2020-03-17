@@ -81,14 +81,14 @@
 .fixed-table-container thead th .th-inner {
     padding: 8px 0;
     line-height: 24px;
-    vertical-align: top;
+    vertical-align: baseline;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 .fixed-table-container tbody td .th-inner {
 	line-height: 24px;
-	vertical-align: top;
+	vertical-align: baseline;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;

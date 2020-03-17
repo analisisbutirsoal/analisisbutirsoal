@@ -95,6 +95,7 @@ class Home extends CI_Controller {
 				$data['active'] = 1;
 				if ($this->sendEmail($username, $email, $pass) == TRUE) {
 					$this->M_User->updateData($data, $username);
+					$this->M_Guru->aktivasiGuru($username, $email);
 					echo "
 						<script>
 							alert('Akun berhasil diaktivasi silakan cek email anda!');

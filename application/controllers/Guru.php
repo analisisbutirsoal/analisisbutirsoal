@@ -8,16 +8,16 @@ class Guru extends CI_Controller {
     }
     public function index()
 	{
-		$this->load->view('admin/header');
+		$this->load->view('guru/header');
         $this->load->view('v_dashboard');
-        $this->load->view('admin/footer');
+        $this->load->view('guru/footer');
     }
     public function menuGuru()
     {
         if ($_GET['menu'] == "add") {
-            $this->load->view('admin/header');
+            $this->load->view('guru/header');
             $this->load->view('V_addGuru');
-            $this->load->view('admin/footer');
+            $this->load->view('guru/footer');
 
         } else {
             $this->load->view('V_home');
