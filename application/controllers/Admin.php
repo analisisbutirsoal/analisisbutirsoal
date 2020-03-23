@@ -78,15 +78,15 @@ class Admin extends CI_Controller {
                         redirect('admin/daftarGuru');
                     }
                 } else {
-                    $field['foto'] = 'kosong';
                     $this->M_Guru->updateGuru($id, $field);
+                    redirect('admin/daftarGuru');
                 }
             }
         }
     }
     public function hapusGuru($id)
     {
-        $this->M_Guru->hapusGuru($id);
+        $this->M_Guru->deleteGuru($id);
         redirect('admin/daftarGuru');
     }
     public function daftarSiswa()
@@ -135,6 +135,44 @@ class Admin extends CI_Controller {
         $this->load->view('admin/header');
         $this->load->view('v_editSiswa', $data);
         $this->load->view('admin/footer');
+
+        if (isset($_POST['submitEdit'])) {
+            $siswaBaru['nisn'] = $this->input->post('username');
+            $siswaBaru['nama'] = $this->input->post('nama');
+            $siswaBaru['alamat'] = $this->input->post('alamat');
+            $siswaBaru['phone'] = $this->input->post('phone');
+            $kls = $this->input->post('kelas');
+            $thn = $this->input->post('tahun');
+            $kode = $this->M_Kelas->getKode($kls, $thn);
+            $siswaBaru['kelas'] = $kode['kd_kelas'];
+
+            if ($siswaBaru['alamat'] != 'Alamat' || $siswaBaru['phone'] != 'Phone') {
+                //upload foto
+                $config['upload_path'] = './upload/siswa/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 10240;
+                $this->load->library('upload', $config);
+                if (!empty($_FILES['foto']['name'])) {
+                    if (!$this->upload->do_upload('foto')) {
+                        $error = array('error' => $this->upload->display_errors());
+                        print_r($error);
+                    } else {
+                        $upload = $this->upload->data();
+                        $siswaBaru['foto'] = $upload['file_name'];
+                        $this->M_Siswa->updateSiswa($id, $siswaBaru);
+                        redirect('admin/daftarSiswa');
+                    }
+                } else {
+                    $this->M_Siswa->updateSiswa($id, $siswaBaru);
+                    redirect('admin/daftarSiswa');
+                }
+            }
+        }
+    }
+    public function hapusSiswa($id)
+    {
+        $this->M_Siswa->deleteSiswa($id);
+        redirect('admin/daftarSiswa');
     }
     public function daftarKelas()
     {
@@ -157,12 +195,23 @@ class Admin extends CI_Controller {
             redirect('admin/daftarKelas');
         }
     }
-    public function editKelas($id)
-    {
+    public function editKelas($id) {
         $data['edit'] = $this->M_Kelas->getDataKelas($id);
         $this->load->view('admin/header');
         $this->load->view('v_editKelas', $data);
         $this->load->view('admin/footer');
+
+        if (isset($_POST['submitEdit'])) {
+            $kelasBaru['kelas'] = $this->input->post('kelas') . " " . $this->input->post('nmkelas');
+            $kelasBaru['tahun'] = $this->input->post('tahun');
+            $this->M_Kelas->updateKelas($id, $kelasBaru);
+            redirect('admin/daftarKelas');
+        }
+    }
+    public function hapusKelas($id)
+    {
+        $this->M_Kelas->deleteKelas($id);
+        redirect('admin/daftarKelas');
     }
     public function daftarMapel()
     {

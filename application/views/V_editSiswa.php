@@ -6,9 +6,9 @@
                 <div class="product-payment-inner-st">
                     <div id="dropzone1" class="pro-ad">
                         <h3>Edit Data Guru</h3>
-                        <form action="<?= site_url("admin/editSiswa")?>" method="post" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                        <?php foreach ($edit as $siswa) : ?>
+                        <form action="<?= site_url("admin/editSiswa/".$siswa['nisn'])?>" method="post" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload" enctype= "multipart/form-data">
                             <div class="row h-100 justify-content-center">
-                            <?php foreach ($edit as $siswa) : ?>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">  
                                     <div class="form-group">
                                         <label for="username">Nomor Induk</label>
@@ -60,9 +60,9 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="image-upload">
                                         <label for="file-input">
-                                            <img class="img-circle m-b" src="<?= ($siswa['foto'] == null) ? base_url()."asset/themee/img/user.png" : $siswa['foto'];?>"/>
+                                            <img id="foto" class="img-circle m-b" src="<?= ($siswa['foto'] == null) ? base_url()."asset/themee/img/user.png" : base_url()."upload/siswa/".$siswa['foto'];?>"/>
                                         </label>
-                                        <input id="file-input" type="file"/>
+                                        <input name="foto" class="form-control" id="file-input" type="file" onchange="document.getElementById('foto').src = window.URL.createObjectURL(this.files[0])"/>
                                     </div>
                                     <p style="text-align: center;">Klik pada gambar untuk mengubah.</p>
                                 </div>
@@ -71,8 +71,8 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="payment-adress">
-                                        <a class="btn btn-danger" href="<?php echo base_url('index.php/' . strtolower($this->session->userdata('level')));?>">Batal</a>
-                                        <button name="submit" type="submit" class="btn btn-primary waves-effect waves-light">Edit</button>
+                                        <a class="btn btn-danger" href="<?= site_url('admin/daftarSiswa')?>">Batal</a>
+                                        <button name="submitEdit" type="submit" class="btn btn-primary waves-effect waves-light">Edit</button>
                                     </div>
                                 </div>
                             </div>

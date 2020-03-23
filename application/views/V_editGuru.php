@@ -49,7 +49,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="payment-adress">
-                                        <a class="btn btn-danger" href="<?php echo base_url('index.php/' . strtolower($this->session->userdata('level')));?>">Batal</a>
+                                        <a class="btn btn-danger" href="<?= site_url("admin/daftarGuru")?>">Batal</a>
                                         <button name="submitEdit" type="submit" class="btn btn-primary waves-effect waves-light">Edit</button>
                                     </div>
                                 </div>

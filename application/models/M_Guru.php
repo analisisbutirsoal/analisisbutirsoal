@@ -28,7 +28,7 @@ class M_Guru extends CI_Model
         $this->db->where('nip_nik', $id);
         return $this->db->update('guru', $data);
     }
-    public function hapusGuru($id)
+    public function deleteGuru($id)
     {
         return $this->db->query("DELETE guru, user, mapel_detail FROM guru, user, mapel_detail WHERE guru.nip_nik=user.username AND guru.nip_nik=mapel_detail.guru AND guru.nip_nik = $id");
     }

@@ -40,4 +40,14 @@ class M_Kelas extends CI_Model
     {
         return $this->db->get('kelas')->last_row('array');
     }
+    public function updateKelas($id, $data)
+    {
+        $this->db->where('kd_kelas', $id);
+        return $this->db->update('kelas', $data);
+    }
+    public function deleteKelas($id)
+    {
+        $this->db->where('kd_kelas', $id);
+        return $this->db->delete('kelas');
+    }
 }

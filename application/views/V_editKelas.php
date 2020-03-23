@@ -7,7 +7,7 @@
                     <div id="dropzone1" class="pro-ad">
                         <h3>Edit Info Kelas</h3>
                         <?php foreach ($edit as $kls) : ?>
-                        <form action="<?= site_url("admin/editKelas")?>" method="post" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                        <form action="<?= site_url("admin/editKelas/".$kls['kd_kelas'])?>" method="post" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
                             <div class="form-group">
                                 <div class="row">
                                     <?php $pisah = explode(" ", $kls['kelas']);?>
@@ -35,8 +35,8 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="payment-adress">
-                                        <a class="btn btn-danger" href="<?php echo base_url('index.php/' . strtolower($this->session->userdata('level')));?>">Batal</a>
-                                        <button name="submit" type="submit" class="btn btn-primary waves-effect waves-light">Edit</button>
+                                        <a class="btn btn-danger" href="<?= site_url("admin/daftarKelas")?>">Batal</a>
+                                        <button name="submitEdit" type="submit" class="btn btn-primary waves-effect waves-light">Edit</button>
                                     </div>
                                 </div>
                             </div>

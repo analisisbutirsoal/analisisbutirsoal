@@ -29,7 +29,8 @@
                                         <td><?= $kls['tahun']?></td>
                                         <td>
                                             <a href="<?= site_url("admin/editKelas/".$kls['kd_kelas'])?>"><i class="fa fa-pencil-square-o" style="margin-right: 10px " aria-hidden="true"></i></a>
-                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            <a href="<?= site_url("admin/hapusKelas/".$kls['kd_kelas'])?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

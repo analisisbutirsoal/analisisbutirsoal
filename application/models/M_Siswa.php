@@ -23,6 +23,14 @@ class M_Siswa extends CI_Model
         $this->db->join('user u', 'u.username = s.nisn', 'inner');
         $this->db->where('s.nisn', $id);
         return $this->db->get()->result_array();
-
+    }
+    public function updateSiswa($id, $data)
+    {
+        $this->db->where('nisn', $id);
+        return $this->db->update('siswa', $data);
+    }
+    public function deleteSiswa($id)
+    {
+        return $this->db->query("DELETE siswa, user FROM siswa, user WHERE siswa.nisn=user.username AND siswa.nisn = $id");
     }
 }

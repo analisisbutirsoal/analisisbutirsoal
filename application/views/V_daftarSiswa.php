@@ -16,6 +16,7 @@
                                 <thead>
                                     <tr>
                                         <th data-field="state" data-checkbox="true"></th>
+                                        <th data-field="foto"></th>
                                         <th data-field="username">Nomor Induk</th>
                                         <th data-field="nama" data-editable="true">Nama Lengkap</th>
                                         <th data-field="alamat" data-editable="true">Alamat</th>
@@ -30,6 +31,7 @@
                                     <?php foreach ($siswa as $sis) : ?>
                                     <tr>
                                         <td></td>
+                                        <td><img width = "20px" id="foto" class="img-circle" src="<?= ($sis['foto'] == null) ? "#" : base_url()."upload/siswa/".$sis['foto'];?>"/></td>
                                         <td><?= $sis['nisn']?></td>
                                         <td><?= $sis['nama']?></td>
                                         <td><?= $sis['alamat']?></td>
@@ -43,7 +45,7 @@
                                         }?></td>
                                         <td>
                                             <a href="<?= site_url("admin/editSiswa/".$sis['nisn'])?>"><i class="fa fa-pencil-square-o" style="margin-right: 10px " aria-hidden="true"></i></a>
-                                            <i class="fa fa-trash-o" aria-hidden="true"></i>    
+                                            <a href="<?= site_url("admin/hapusSiswa/".$sis['nisn'])?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
