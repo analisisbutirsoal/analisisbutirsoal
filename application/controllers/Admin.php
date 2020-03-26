@@ -246,10 +246,33 @@ class Admin extends CI_Controller {
     }
     public function editMapel($id)
     {
-        $data['edit'];
+        $data['edit'] = $this->M_Mapel->getDetailMapel($id);
+        $data['guru'] = $this->M_Guru->listGuru();
+        $data['kelas'] = $this->M_Kelas->listKelas();
         $this->load->view('admin/header');
         $this->load->view('v_editMapel', $data);
         $this->load->view('admin/footer');
+
+        if (isset($_POST['submitEdit'])) {
+            $mapel['kd_mapel'] = $this->setKode('mapel');
+            $mapel['nama_mapel'] = $this->input->post('nama_mapel');
+            $cek = $this->M_Mapel->getMapel($mapel['nama_mapel']);
+            if (count($cek) == NULL) {
+                $this->M_Mapel->addMapel($mapel);
+            }
+            foreach ($_POST['kelas'] as $kls) {
+                $update_md['kd_mapel'] = $cek['kd_mapel'];
+                $update_md['kd_kelas'] = $kls;
+                $update_md['guru'] = $this->input->post('guru');
+                $this->M_Mapel->updateMapelDetail($id, $update_md);
+            }
+            redirect('admin/daftarMapel');
+        }
+    }
+    public function hapusMapel($id)
+    {
+        $this->M_Mapel->deleteMapelDetail($id);
+        redirect('admin/daftarmapel');
     }
     public function setKode($tabel)
     {

@@ -6,7 +6,7 @@
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd">
-                            <h3>Daftar Kelas</h3>
+                            <h3>Daftar Mata Pelajaran</h3>
                         </div>
                     </div>
                     <div class="sparkline13-graph">
@@ -30,8 +30,8 @@
                                         <td><?= $mapel['kelas'].' '.$mapel['tahun']?></td>
                                         <td><?= $mapel['nama']?></td>
                                         <td>
-                                            <a href="<?= site_url("admin/editMapel/".$mapel['kd_mapel'])?>"><i class="fa fa-pencil-square-o" style="margin-right: 10px " aria-hidden="true"></i></a>
-                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            <a href="<?= site_url("admin/editMapel/".$mapel['id_md'])?>"><i class="fa fa-pencil-square-o" style="margin-right: 10px " aria-hidden="true"></i></a>
+                                            <a href="<?= site_url("admin/hapusMapel/".$mapel['id_md'])?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
