@@ -5,18 +5,18 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-payment-inner-st">
                     <div id="dropzone1" class="pro-ad">
-                        <h3>Edit Data Guru</h3>
+                        <h3>Edit Data Siswa</h3>
                         <?php foreach ($edit as $siswa) : ?>
                         <form action="<?= site_url("admin/editSiswa/".$siswa['nisn'])?>" method="post" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload" enctype= "multipart/form-data">
                             <div class="row h-100 justify-content-center">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">  
                                     <div class="form-group">
                                         <label for="username">Nomor Induk</label>
-                                        <input name="username" type="text" class="form-control" value="<?= $siswa['nisn']?>">
+                                        <input name="username" type="text" class="form-control" value="<?= $siswa['nisn']?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama Lengkap</label>
-                                        <input name="nama" type="text" class="form-control" value="<?= $siswa['nama'];?>">
+                                        <input name="nama" type="text" class="form-control" value="<?= $siswa['nama'];?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="alamat">Alamat</label>

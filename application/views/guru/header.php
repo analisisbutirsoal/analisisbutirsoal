@@ -8,6 +8,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/bootstrap.min.css">
@@ -36,7 +37,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/select2/select2.min.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/ionRangeSlider/ion.rangeSlider.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/ionRangeSlider/ion.rangeSlider.skinFlat.css">
-    <script src="<?=base_url();?>/asset/themee/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/datetimepicker/bootstrap-datetimepicker.min.css">
+    <script src="<?= base_url();?>/asset/themee/js/datepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/vendor/modernizr-2.8.3.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url();?>/asset/themee/img/favicon.ico">
     <title>Online Test</title>
 </head>
@@ -45,29 +48,29 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <img class="main-logo" src="<?=base_url();?>/asset/themee/img/logo/logo.png" alt="" />
+                <img class="main-logo" src="<?=base_url();?>/asset/themee/img/logo.png" alt="" />
                 <strong><a href="index.html"><img src="<?=base_url();?>/asset/themee/img/logo/logosn.png" alt="" /></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                            <a title="Dashboard" href="<?= site_url("guru")?>">
+                            <a title="Dashboard" href="<?=site_url("guru")?>">
 								   <span class="educate-icon educate-home icon-wrap"></span>
 								   <span class="mini-click-non">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a title="Soal" class="has-arrow" href="<?= site_url("guru/daftarSoal")?>" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Soal Ujian</span></a>
+                            <a title="Bank Soal" href="<?=site_url("guru/daftarSoal")?>">
+								   <span class="educate-icon educate-course icon-wrap"></span>
+								   <span class="mini-click-non">Bank Soal</span>
+                            </a>
                         </li>
                         <li>
-                            <a title="Kelas" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Daftar Kelas</span></a>
-                        </li>
-                        <li>
-                            <a title="Nilai" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Daftar Nilai</span></a>
-                        </li>
-                        <li>
-                            <a title="Analisis" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Hasil Analisis</span></a>
+                            <a title="Ujian" href="<?=site_url("guru/daftarUjian")?>">
+								   <span class="educate-icon educate-data-table icon-wrap"></span>
+								   <span class="mini-click-non">Ujian</span>
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -81,7 +84,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href="#"><img class="main-logo" src="<?=base_url();?>/asset/themee/img/logo/logo.png" alt="" /></a>
+                        <a href="#"><img class="main-logo" src="<?=base_url();?>/asset/themee/img/logo.png" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -104,71 +107,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <div class="col-lg-11 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                                <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-bell" aria-hidden="true"></i><span class="indicator-nt"></span></a>
-                                                    <div role="menu" class="notification-author dropdown-menu animated zoomIn">
-                                                        <div class="notification-single-top">
-                                                            <h1>Notifikasi</h1>
-                                                        </div>
-                                                        <ul class="notification-menu">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="educate-icon educate-checked edu-checked-pro admin-check-pro" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Advanda Cro</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-cloud edu-cloud-computing-down" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Sulaiman din</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-eraser edu-shield" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Victor Jara</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-line-chart edu-analytics-arrow" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Victor Jara</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
 															<img src="<?=base_url();?>/asset/themee/img/user.png" alt="" />
-															<span class="admin-name"><?= $this->session->userdata('level');?></span>
+															<span class="admin-name"><?=$this->session->userdata('level');?></span>
 															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="#">Akun Saya</a></li>
+                                                        <li><a href="<?=site_url("guru/editProfil/".$this->session->userdata('username'))?>">Edit Profil</a></li>
                                                         <li><a href="<?= site_url('home/logout')?>">Logout</a></li>
                                                     </ul>
                                                 </li>
@@ -191,30 +137,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 <nav id="dropdown">
                                     <ul class="mobile-menu-nav">
                                         <li><a data-toggle="collapse" data-target="#Charts" href="#">Dashboard<span class="admin-project-icon edu-icon"></span></a></li>
-                                        <li><a data-toggle="collapse" data-target="#demoevent" href="#">Guru<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="demoevent" class="collapse dropdown-header-top">
-                                                <li><a href="<?= site_url("admin/daftarGuru")?>">Daftar Guru</a></li>
-                                                <li><a href="<?= site_url("admin/addGuru")?>">Tambahkan Guru</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#demopro" href="#">Siswa<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="demopro" class="collapse dropdown-header-top">
-                                                <li><a href="<?= site_url("admin/daftarSiswa")?>">Daftar Siswa</a></li>
-                                                <li><a href="<?= site_url("admin/addSiswa")?>">Tambahkan Siswa</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#democrou" href="#">Kelas<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="democrou" class="collapse dropdown-header-top">
-                                                <li><a href="#">Daftar Kelas</a></li>
-                                                <li><a href="#">Tambahkan Kelas</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#demolibra" href="#">Mata Pelajaran<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="demolibra" class="collapse dropdown-header-top">
-                                                <li><a href="#">Daftar Mapel</a></li>
-                                                <li><a href="#">Tambahkan Mapel</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="<?=site_url("guru/daftarSoal")?>">Bank Soal<span class="admin-project-icon edu-icon"></span></a></li>
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="<?=site_url("guru/daftarUjian")?>">Ujian<span class="admin-project-icon edu-icon"></span></a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -223,3 +147,4 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </div>
             </div>
             <!-- Mobile Menu end -->
+            

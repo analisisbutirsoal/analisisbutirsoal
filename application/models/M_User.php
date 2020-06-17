@@ -19,5 +19,5 @@ class M_User extends CI_Model
     {
         $this->db->where('username', $username);
         return $this->db->update('user', $data);
-    }
+    }   
 }

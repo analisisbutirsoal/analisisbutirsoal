@@ -50,4 +50,12 @@ class M_Kelas extends CI_Model
         $this->db->where('kd_kelas', $id);
         return $this->db->delete('kelas');
     }
+    public function getKelasMapelGuru($username)
+    {
+        $this->db->select('*');
+        $this->db->from('mapel_detail d');
+        $this->db->join('kelas k', 'k.kd_kelas = d.kd_kelas');
+        $this->db->where('d.guru', $username);
+        return $this->db->get()->result_array();
+    }
 }

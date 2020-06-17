@@ -9,7 +9,10 @@
         </div>
     </div>
 </div> -->
-<script src="<?= base_url();?>/asset/themee/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="<?= base_url();?>/assets/jquery/jquery-3.3.1.js"></script>
+    <script src="<?= base_url();?>/asset/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="<?= base_url();?>/asset/ckeditor/ckeditor.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/bootstrap.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/wow.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/jquery-price-slider.js"></script>
@@ -48,6 +51,8 @@
     <script src="<?= base_url();?>/asset/themee/js/masking-active.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/datepicker/jquery-ui.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/datepicker/datepicker-active.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/datepicker/moment.min.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/datepicker/bootstrap-datetimepicker.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/form-validation/jquery.form.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/form-validation/jquery.validate.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/tab.js"></script>
@@ -60,5 +65,7 @@
     <script src="<?= base_url();?>/asset/themee/js/ionRangeSlider/ion.rangeSlider.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/ionRangeSlider/ion.rangeSlider.active.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/input-mask/jasny-bootstrap.min.js"></script>
+    
+    
 </body>
 </html>

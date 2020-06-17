@@ -10,10 +10,14 @@ class Admin extends CI_Controller {
         $this->load->model('M_Kelas');
         $this->load->model('M_Mapel');
     }
-	public function index()
+    public function index()
 	{
+        $data['guru'] = count($this->M_Guru->listGuru());
+        $data['siswa'] = count($this->M_Siswa->listSiswa());
+        $data['kelas'] = count($this->M_Kelas->listKelas());
+        $data['mapel'] = count($this->M_Mapel->listDetailMapel());
 		$this->load->view('admin/header');
-        $this->load->view('v_dashboard');
+        $this->load->view('v_dashboardAdmin', $data);
         $this->load->view('admin/footer');
     }
     public function daftarGuru()
@@ -37,7 +41,6 @@ class Admin extends CI_Controller {
                     <script>
                         alert('Data sudah ada');
                     </script>";
-
             } else {
                 $this->M_User->addUser($user);
                 $guru['nip_nik'] = $user['username'];
@@ -60,28 +63,29 @@ class Admin extends CI_Controller {
             $field['alamat'] = $this->input->post('alamat');
             $field['phone'] = $this->input->post('phone');
             $field['jabatan'] = $this->input->post('jabatan');
-
-            if ($field['alamat'] != 'Alamat' || $field['phone'] != 'Phone' || $field['jabatan'] != 'Jabatan') {
-                //upload foto
-                $config['upload_path'] = './upload/guru/';
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size'] = 10240;
-                $this->load->library('upload', $config);
-                if (!empty($_FILES['foto']['name'])) {
-                    if (!$this->upload->do_upload('foto')) {
-                        $error = array('error' => $this->upload->display_errors());
-                        print_r($error);
-                    } else {
-                        $upload = $this->upload->data();
-                        $field['foto'] = $upload['file_name'];
-                        $this->M_Guru->updateGuru($id, $field);
-                        redirect('admin/daftarGuru');
-                    }
+            //jika alamat, phone, jabatan tidak diubah
+            $field['alamat'] != 'Alamat' ? $field['alamat'] = $field['alamat'] : $field['alamat'] = "";
+            $field['phone'] != 'Phone' ? $field['phone'] = $field['phone'] : $field['phone'] = "";
+            $field['jabatan'] != 'Jabatan' ? $field['jabatan'] = $field['jabatan'] : $field['jabatan'] = "";
+            //upload foto
+            $config['upload_path'] = './upload/guru/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = 10240;
+            $this->load->library('upload', $config);
+            if (!empty($_FILES['foto']['name'])) {
+                if (!$this->upload->do_upload('foto')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    print_r($error);
                 } else {
+                    $upload = $this->upload->data();
+                    $field['foto'] = $upload['file_name'];
                     $this->M_Guru->updateGuru($id, $field);
                     redirect('admin/daftarGuru');
                 }
-            }
+            } else {
+                $this->M_Guru->updateGuru($id, $field);
+                redirect('admin/daftarGuru');
+            } 
         }
     }
     public function hapusGuru($id)
@@ -252,20 +256,10 @@ class Admin extends CI_Controller {
         $this->load->view('admin/header');
         $this->load->view('v_editMapel', $data);
         $this->load->view('admin/footer');
-
         if (isset($_POST['submitEdit'])) {
-            $mapel['kd_mapel'] = $this->setKode('mapel');
-            $mapel['nama_mapel'] = $this->input->post('nama_mapel');
-            $cek = $this->M_Mapel->getMapel($mapel['nama_mapel']);
-            if (count($cek) == NULL) {
-                $this->M_Mapel->addMapel($mapel);
-            }
-            foreach ($_POST['kelas'] as $kls) {
-                $update_md['kd_mapel'] = $cek['kd_mapel'];
-                $update_md['kd_kelas'] = $kls;
-                $update_md['guru'] = $this->input->post('guru');
-                $this->M_Mapel->updateMapelDetail($id, $update_md);
-            }
+            $update_md['kd_kelas'] = $this->input->post('kelas');
+            $update_md['guru'] = $this->input->post('guru');
+            $this->M_Mapel->updateMapelDetail($id, $update_md);
             redirect('admin/daftarMapel');
         }
     }
@@ -283,7 +277,7 @@ class Admin extends CI_Controller {
         } else if ($tabel == "mapel") {
             $last = $this->M_Mapel->getLast();
             $id = (int) substr($last['kd_mapel'], 1, 4);
-            $kode = "K" . sprintf("%04s", ++$id);
+            $kode = "M" . sprintf("%04s", ++$id);
         }
         return $kode;
     }

@@ -45,7 +45,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <img class="main-logo" src="<?=base_url();?>/asset/themee/img/logo/logo.png" alt="" />
+                <img class="main-logo" src="<?=base_url();?>/asset/themee/img/logo.png" alt="" />
                 <strong><a href="index.html"><img src="<?=base_url();?>/asset/themee/img/logo/logosn.png" alt="" /></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
@@ -72,14 +72,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </ul>
                         </li>
                         <li>
-                            <a title="Kelas" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Kelas</span></a>
+                            <a title="Kelas" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Kelas</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a href="<?= site_url("admin/daftarKelas")?>"><span class="mini-sub-pro">Daftar Kelas</span></a></li>
                                 <li><a href="<?= site_url("admin/addKelas")?>"><span class="mini-sub-pro">Tambahkan Kelas</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a title="Mapel" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Mata Pelajaran</span></a>
+                            <a title="Mapel" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Mata Pelajaran</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a href="<?= site_url("admin/daftarMapel")?>"><span class="mini-sub-pro">Daftar Mapel</span></a></li>
                                 <li><a href="<?= site_url("admin/addMapel")?>"><span class="mini-sub-pro">Tambahkan Mapel</span></a></li>
@@ -97,7 +97,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href="#"><img class="main-logo" src="<?=base_url();?>/asset/themee/img/logo/logo.png" alt="" /></a>
+                        <a href="#"><img class="main-logo" src="<?=base_url();?>/asset/themee/img/logo.png" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -119,64 +119,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     </div>
                                     <div class="col-lg-11 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
-                                            <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                                <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-bell" aria-hidden="true"></i><span class="indicator-nt"></span></a>
-                                                    <div role="menu" class="notification-author dropdown-menu animated zoomIn">
-                                                        <div class="notification-single-top">
-                                                            <h1>Notifikasi</h1>
-                                                        </div>
-                                                        <ul class="notification-menu">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="educate-icon educate-checked edu-checked-pro admin-check-pro" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Advanda Cro</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-cloud edu-cloud-computing-down" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Sulaiman din</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-eraser edu-shield" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Victor Jara</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-line-chart edu-analytics-arrow" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Victor Jara</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
+                                            <ul class="nav navbar-nav mai-top-nav header-right-menu">                                                    
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
 															<img src="<?=base_url();?>/asset/themee/img/user.png" alt="" />
@@ -184,7 +127,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="#">Akun Saya</a></li>
                                                         <li><a href="<?= site_url('home/logout')?>">Logout</a></li>
                                                     </ul>
                                                 </li>

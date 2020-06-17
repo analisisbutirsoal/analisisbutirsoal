@@ -11,14 +11,14 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <input name="nama_mapel" type="text" class="form-control" value="<?= $mapel['nama_mapel']?>">
+                                        <input name="nama_mapel" type="text" class="form-control" value="<?= $mapel['nama_mapel']?>" readonly>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <select name="guru" data-placeholder="<?= $mapel{'nama'}?>" class="chosen-select" tabindex="-1">
+                                        <select name="guru" data-placeholder="<?= $mapel{'nama'}?>" class="chosen-select" tabindex="-1" required>
                                             <option selected="selected" value="<?= $mapel['guru']?>"></option>
                                             <?php foreach($guru as $guru) : ?>
                                             <option value="<?= $guru['nip_nik']?>"><?= $guru{'nama'}?></option>
@@ -30,8 +30,8 @@
                             <div class="row">
                                 <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <select name="kelas" data-placeholder="Pilih Kelas" class="chosen-select" tabindex="-1">
-                                            <option selected="selected" value="<?= $mapel['kd_kelas']?>"><?= $mapel['kelas'].' '.$mapel['tahun']?></option>
+                                        <select name="kelas" data-placeholder="<?= $mapel['kelas'].' '.$mapel['tahun']?>" class="chosen-select" tabindex="-1" required>
+                                            <option selected="selected" value="<?= $mapel['kd_kelas']?>"></option>
                                             <?php foreach($kelas as $kls) :?>
                                             <option value="<?= $kls['kd_kelas']?>"><?= $kls['kelas'].' '.$kls['tahun']?></option>
                                             <?php endforeach;?>
@@ -42,7 +42,8 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="payment-adress">
-                                        <button name="submitEdit" type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                        <a class="btn btn-danger" href="<?= site_url("admin/daftarMapel")?>">Batal</a>
+                                        <button name="submitEdit" type="submit" class="btn btn-primary waves-effect waves-light">Edit</button>
                                     </div>
                                 </div>
                             </div>

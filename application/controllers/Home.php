@@ -6,7 +6,9 @@ class Home extends CI_Controller {
         parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->library('email');
+		$this->load->helper('email');
         $this->load->model('M_Guru');
+        $this->load->model('M_Siswa');
         $this->load->model('M_User');
     }
 	public function index()
@@ -15,9 +17,9 @@ class Home extends CI_Controller {
 			if ($_SESSION['level'] == "Admin") {
 				redirect('admin');
 			} elseif ($_SESSION['level'] == "Guru") {
-				# code...
+				redirect('guru');
 			} else {
-				# code...
+				redirect('siswa');
 			}
 		} else {
 			$this->load->view('V_home');
@@ -74,7 +76,7 @@ class Home extends CI_Controller {
         $email = $this->input->post('Email');
         $data['username'] = $username;
 		$data['email'] = $email;
-		$user = $this->M_User->cekUsername($username);
+		$user = $this->M_User->getUser($username);
 
 		if (isset($username) && isset($email)) {
 			if ($user['active'] == 1) {
@@ -95,7 +97,11 @@ class Home extends CI_Controller {
 				$data['active'] = 1;
 				if ($this->sendEmail($username, $email, $pass) == TRUE) {
 					$this->M_User->updateData($data, $username);
-					$this->M_Guru->aktivasiGuru($username, $email);
+					if ($user['level'] == "Guru") {
+						$this->M_Guru->aktivasiGuru($username, $email);
+					} else if ($user['level'] == "Siswa") {
+						$this->M_Siswa->aktivasiSiswa($username, $email);
+					}
 					echo "
 						<script>
 							alert('Akun berhasil diaktivasi silakan cek email anda!');

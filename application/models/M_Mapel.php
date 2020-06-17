@@ -9,7 +9,7 @@ class M_Mapel extends CI_Model
     }
     public function listDetailMapel()
     {
-        $this->db->select('*');
+        $this->db->select('*'); 
         $this->db->from('mapel_detail d');
         $this->db->join('mapel m', 'm.kd_mapel = d.kd_mapel');
         $this->db->join('guru g', 'g.nip_nik = d.guru');
@@ -52,5 +52,14 @@ class M_Mapel extends CI_Model
     {
         $this->db->where('id_md', $id);
         return $this->db->delete('mapel_detail');
+    }
+    public function getMapelGuru($username)
+    {
+        $this->db->select('*');
+        $this->db->from('mapel m');
+        $this->db->join('mapel_detail d', 'm.kd_mapel = d.kd_mapel');
+        $this->db->where('d.guru', $username);
+        $this->db->group_by('m.nama_mapel');
+        return $this->db->get()->result_array();
     }
 }

@@ -12,11 +12,11 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">  
                                     <div class="form-group">
                                         <label for="username">NIP/NIK</label>
-                                        <input name="username" type="text" class="form-control" value="<?= $guru['nip_nik']?>">
+                                        <input name="username" type="text" class="form-control" value="<?= $guru['nip_nik']?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama Lengkap</label>
-                                        <input name="nama" type="text" class="form-control" value="<?= $guru['nama'];?>">
+                                        <input name="nama" type="text" class="form-control" value="<?= $guru['nama'];?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="alamat">Alamat</label>
@@ -29,10 +29,6 @@
                                     <div class="form-group">
                                         <label for="phone">Nomor Handphone</label>
                                         <input name="phone" type="text" class="form-control" value="<?= ($guru['phone'] == null) ? 'Phone' : $guru['phone'];?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jabatan">Jabatan</label>
-                                        <input name="jabatan" type="text" class="form-control" value="<?= ($guru['jabatan'] == null) ? 'Jabatan' : $guru['jabatan'];?>">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

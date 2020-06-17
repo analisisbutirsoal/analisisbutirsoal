@@ -15,7 +15,6 @@
                                 data-cookie-id-table="saveId" data-click-to-select="true" data-toolbar="#toolbar">
                                 <thead>
                                     <tr>
-                                        <th data-field="state" data-checkbox="true"></th>
                                         <th data-field="foto"></th>
                                         <th data-field="username">Nomor Induk</th>
                                         <th data-field="nama" data-editable="true">Nama Lengkap</th>
@@ -30,8 +29,7 @@
                                 <tbody>
                                     <?php foreach ($siswa as $sis) : ?>
                                     <tr>
-                                        <td></td>
-                                        <td><img width = "20px" id="foto" class="img-circle" src="<?= ($sis['foto'] == null) ? "#" : base_url()."upload/siswa/".$sis['foto'];?>"/></td>
+                                        <td><img width ="50px" id="foto" class="img-circle" src="<?= ($sis['foto'] == null) ? "#" : base_url()."upload/siswa/".$sis['foto'];?>"/></td>
                                         <td><?= $sis['nisn']?></td>
                                         <td><?= $sis['nama']?></td>
                                         <td><?= $sis['alamat']?></td>
@@ -44,8 +42,8 @@
                                             echo "Tidak Aktif";
                                         }?></td>
                                         <td>
-                                            <a href="<?= site_url("admin/editSiswa/".$sis['nisn'])?>"><i class="fa fa-pencil-square-o" style="margin-right: 10px " aria-hidden="true"></i></a>
-                                            <a href="<?= site_url("admin/hapusSiswa/".$sis['nisn'])?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            <button title="Edit" class="btn-default"><a href="<?= site_url("admin/editSiswa/".$sis['nisn'])?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>
+                                            <button title="Trash" class="btn-default"><a href="<?= site_url("admin/hapusSiswa/".$sis['nisn'])?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></button>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

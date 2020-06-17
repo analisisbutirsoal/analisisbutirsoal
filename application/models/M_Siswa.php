@@ -24,6 +24,11 @@ class M_Siswa extends CI_Model
         $this->db->where('s.nisn', $id);
         return $this->db->get()->result_array();
     }
+    public function aktivasiSiswa($nisn, $email)
+    {
+        $this->db->where('nisn', $nisn);
+        return $this->db->update('siswa', array('email' => $email));
+    }
     public function updateSiswa($id, $data)
     {
         $this->db->where('nisn', $id);

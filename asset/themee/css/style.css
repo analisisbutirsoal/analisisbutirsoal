@@ -4440,9 +4440,12 @@ td.text-right.mail-date {
 
 .custom-datatable-overright table tbody tr td {
 	padding-left: 10px !important;
-	/* padding-right: 5px !important; */
+	padding-right: 5px !important;
 	font-size: 14px;
 	text-align: left;
+	border-top: 1px solid #e9ecef;
+	white-space: nowrap;
+	vertical-align: middle;
 } 
 
 .pagination>.active>a,
@@ -5680,7 +5683,7 @@ div#sparklinehome canvas {
 	text-align: left;
 }
 
-.add-department .form-group {
+.add-department .form-group {	
 	margin: 10px 0px;
 }
 
@@ -5689,7 +5692,10 @@ div#sparklinehome canvas {
 }
 
 .datatable-dashv1-list .btn-default {
-	outline: none
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	padding: 5px 15px;
 }
 
 .datatable-dashv1-list .editable-submit {
@@ -5704,8 +5710,9 @@ div#sparklinehome canvas {
 .datatable-dashv1-list .editable-submit:hover,
 .datatable-dashv1-list .editable-submit:focus,
 .datatable-dashv1-list .editable-submit:active {
-	background: #006DF0;
-	color: #fff;
+	border: none;
+	border-radius: 3px;
+	outline: none;
 }
 
 .dropdown-segmented .btn {
@@ -6306,4 +6313,10 @@ div#sparklinehome canvas {
 .image-upload img {
 	width: 250px;
 	cursor: pointer;
+}
+.table-borderless tbody+tbody,
+.table-borderless td,
+.table-borderless th,
+.table-borderless thead th {
+	border: 0
 }
