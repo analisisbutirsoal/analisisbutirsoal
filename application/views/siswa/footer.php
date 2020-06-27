@@ -1,15 +1,5 @@
-<!-- <div class="footer-copyright-area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="footer-copy-right">
-                    <p>Copyright © 2020. rtn skrispi.</p>
-                </div>
-            </div>
-        </div>
     </div>
-</div> -->
-<script src="<?= base_url();?>/asset/themee/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="<?= base_url();?>/asset/themee/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/bootstrap.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/wow.min.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/jquery-price-slider.js"></script>

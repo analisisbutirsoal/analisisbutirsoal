@@ -46,11 +46,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <title>Online Test</title>
 </head>
 <body>
-    <!-- Start Left menu area -->
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <img class="main-logo" src="<?=base_url();?>/asset/themee/img/logo.png" alt="" />
+                <img class="main-logo" src="<?=base_url();?>/asset/themee/img/custom.png" alt=""/>
                 <strong><a href="index.html"><img src="<?=base_url();?>/asset/themee/img/logo/logosn.png" alt="" /></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
@@ -59,14 +58,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <li class="active">
                             <a title="Dashboard" href="<?=site_url("siswa")?>">
 								   <span class="educate-icon educate-home icon-wrap"></span>
-								   <span class="mini-click-non">Dashboard</span>
+								   <span class="mini-click-non">Daftar Ujian</span>
                             </a>
-                        </li>
-                        <li>
-                            <a title="Ujian" class="has-arrow" href="<?=site_url("siswa/daftarUjian")?>" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Ujian</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a href="<?=site_url("siswa/daftarUjian")?>"><span class="mini-sub-pro">Daftar Ujian</span></a></li>
-                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -86,7 +79,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
         </div>
         <div class="header-advance-area">
-            <!-- Header start -->
             <div class="header-top-area">
                 <div class="container-fluid">
                     <div class="row">
@@ -96,11 +88,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
                                         <div class="menu-switcher-pro">
                                             <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
-													<i class="educate-icon educate-nav"></i>
-												</button>
+                                                <i class="educate-icon educate-nav"></i>
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-11 col-md-5 col-sm-12 col-xs-12">
+                                    <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                                 <li class="nav-item">
@@ -132,13 +124,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul class="mobile-menu-nav">
-                                        <li><a data-toggle="collapse" data-target="#Charts" href="#">Dashboard<span class="admin-project-icon edu-icon"></span></a></li>
-                                        <li><a data-toggle="collapse" data-target="#demoevent" href="#">Ujian<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="demoevent" class="collapse dropdown-header-top">
-                                                <li><a href="<?=site_url("siswa/daftarUjian")?>">Daftar Ujian</a></li>
-                                                <li><a href="<?=site_url("siswa/addUjian")?>">Tambahkan Ujian</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a data-toggle="collapse" href="">Daftar Ujian<span class="admin-project-icon edu-icon"></span></a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -147,3 +133,4 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </div>
             </div>
             <!-- Mobile Menu end -->
+        </div>

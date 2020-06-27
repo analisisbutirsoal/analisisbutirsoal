@@ -13,6 +13,7 @@
                                     <div class="review-content-section">
                                         <div id="dropzone1" class="pro-ad addcoursepro table-responsive">
                                         <input style="display:none;" id="jmlhSoal" type="text" value="<?= $jmlsoal;?>">
+                                        <p id="emptyText"></p>
                                             <?php $i = 0; $noSoal = 0; foreach($soal as $soal) :?>
                                                 <input style="display:none;" id=<?= "idSoal".$i++;?> type="text" value="<?= $soal['id_soal']?>">
                                                 <input style="display:none;" id="<?= "kunci".$soal['id_soal']?>" type="text" value="<?= $soal['kunciJawaban']?>">
@@ -45,11 +46,12 @@
                                                             <td style="display:inline-table;"><?= $soal['jawabanD']?></td>
                                                         </tr>
                                                     </table>
-                                                    <?php endforeach;?>
+                                                    <?php endforeach; ?>
+                                                    <br>
                                                     <div class="col-sm-6">
                                                         <div class="payment-adress">
                                                             <input class="btn btn-danger" action="action" onclick="window.history.go(-1); return false;" type="submit" value="Batal"/>
-                                                            <button name="tambah" class="btn btn-primary waves-effect waves-light" type="submit">Simpan</button>
+                                                            <button id="btn" name="tambah" class="btn btn-primary waves-effect waves-light" type="submit">Simpan</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -62,8 +64,11 @@
                     </div>
                     <script type="text/javascript">
                         var x = document.getElementById("jmlhSoal").value;
-                        // var z = document.getElementById("jawaban");
-                        // z.innerHTML = x;
+                        var btn = document.getElementById("btn");
+                        if (x == 0) {
+                            document.getElementById("emptyText").innerHTML = "Belum ada soal ditambahkan";
+                            btn.style.display = "none";
+                        }
                         for (var index = 0; index < x; index++) {
                             var id = document.getElementById("idSoal"+index).value;
                             var kunci = document.getElementById("kunci"+id).value;

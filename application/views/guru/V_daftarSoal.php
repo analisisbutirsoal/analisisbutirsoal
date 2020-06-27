@@ -6,7 +6,14 @@
                     <ul id="myTabedu1" class="tab-review-design">
                         <li class="active"><a href="#soal">Bank Soal</a></li>
                     </ul>
-                    <a href="#" onclick="return addSoal();">Tambah Soal</a>
+                    <a id="addSoal" href="#" onclick="return addSoal();">Tambah Soal</a>
+                    <script>
+                        $("#addSoal").click(function() {
+                            $('html, body').animate({
+                                scrollTop: $("#tambahSoal").offset().top
+                            }, 500);
+                        });
+                    </script>
                     <div id="myTabContent" class="tab-content custom-product-edit">
                         <div class="product-tab-list tab-pane fade active in" id="soal">
                             <div class="row">
@@ -89,7 +96,6 @@
                         x.style.display = "block";
                     }
                 }
-                
             </script>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="tambahSoal" style="display:none;">
                 <div class="product-payment-inner-st">
@@ -104,6 +110,17 @@
                                         <div id="dropzone1" class="pro-ad addcoursepro">
                                             <form action="<?= site_url("guru/addSoal")?>" class="dropzone dropzone-custom" id="demo1-upload" method="post">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group row">
+                                                        <label for="mapel" class="col-sm-2 col-form-label">Mata Pelajaran</label>
+                                                        <div class="col-sm-8">
+                                                            <select required name="mapel" class="form-control" >
+                                                                <option value="none" selected="" disabled="">Mata Pelajaran</option>
+                                                                <?php foreach($mapel as $mpl) :?>
+                                                                <option value="<?= $mpl['kd_mapel']?>"><?= $mpl['nama_mapel']?></option>
+                                                                <?php endforeach;?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group row">
                                                         <label for="pertanyaan" class="col-sm-2 col-form-label">Pertanyaan</label>
                                                         <div class="col-sm-8">

@@ -17,7 +17,7 @@ class Guru extends CI_Controller {
         $data['kelas'] = count($this->M_Kelas->getKelasMapelGuru($this->session->userdata('username')));
         $data['ujian'] = count($this->M_Ujian->listUjian($this->session->userdata('username')));
 		$this->load->view('guru/header');
-        $this->load->view('v_dashboardGuru', $data);
+        $this->load->view('guru/v_dashboardGuru', $data);
         $this->load->view('guru/footer');
     }
     public function editProfil($kd_guru){
@@ -65,14 +65,14 @@ class Guru extends CI_Controller {
     public function daftarUjian(){
         $data['ujian'] = $this->M_Ujian->listUjian($this->session->userdata('username'));
         $this->load->view('guru/header');
-        $this->load->view('v_daftarUjian', $data);
+        $this->load->view('guru/v_daftarUjian', $data);
         $this->load->view('guru/footer');
     }
     public function addUjian(){
         $data['mapel'] = $this->M_Mapel->getMapelGuru($this->session->userdata('username'));
         $data['kelas'] = $this->M_Kelas->getKelasMapelGuru($this->session->userdata('username'));
         $this->load->view('guru/header');
-        $this->load->view('v_addUjian', $data);
+        $this->load->view('guru/v_addUjian', $data);
         $this->load->view('guru/footer');
 
         if (isset($_POST['next'])) {
@@ -92,14 +92,14 @@ class Guru extends CI_Controller {
                 $detail['kd_ujian'] = $kodeUjian;
                 $this->M_Ujian->addDetailUjian($detail);
             }
-            redirect('guru/addSoal/');
+            redirect('guru/addSoal');
         }
     }
     public function pilihSoal(){
-        $data['soal'] = $this->M_Ujian->getBankSoal($this->session->userdata('username'));
+        $data['soal'] = $this->M_Ujian->getSoalMapel($this->session->userdata('kd_mapel'));
         $data['jmlsoal'] = count($data['soal']);
         $this->load->view('guru/header');
-        $this->load->view('v_pilihSoal', $data);
+        $this->load->view('guru/v_pilihSoal', $data);
         $this->load->view('guru/footer');
     }
     public function addSoalUjian()
@@ -110,22 +110,23 @@ class Guru extends CI_Controller {
                 $data['kd_ujian'] = $this->session->userdata('kd_ujian');
                 $this->M_Ujian->addSoalUjian($data);
             }
-            $this->session->unset_userdata('kd_ujian');
-            redirect("guru/pilihSoal");
+            redirect('guru/editUjian/' . $this->session->userdata('id_ud'));
         }
     }
     public function daftarSoal()
     {
         $data['soal'] = $this->M_Ujian->getBankSoal($this->session->userdata('username'));
+        $data['mapel'] = $this->M_Mapel->getMapelGuru($this->session->userdata('username'));
         $data['jmlsoal'] = count($data['soal']);
         $this->load->view('guru/header');
-        $this->load->view('v_daftarSoal', $data);
+        $this->load->view('guru/v_daftarSoal', $data);
         $this->load->view('guru/footer');
     }
     public function addSoal()
     {
         if (isset($_POST['tambah'])) {
             $soal['kd_guru'] = $this->session->userdata('username');
+            $soal['kd_mapel'] = $this->input->post('mapel');
             $soal['pertanyaan'] = $this->input->post('pertanyaan');
             $soal['jawabanA'] = $this->input->post('jwbnA');
             $soal['jawabanB'] = $this->input->post('jwbnB');
@@ -136,18 +137,22 @@ class Guru extends CI_Controller {
             redirect("guru/daftarSoal");
         }
     }
-    public function editUjian($kd_ujian, $kd_kelas)
+    public function editUjian($id_ud)
     {
-        $data['desk'] = $this->M_Ujian->getUjian($kd_ujian, $kd_kelas);
-        $data['soal'] = $this->M_Ujian->getAllSoal($kd_ujian);
-        $data['jmlsoal'] = count($this->M_Ujian->getAllSoal($kd_ujian));
+        $ujian = $this->M_Ujian->getUjian($id_ud)->row_array();
+        $data['desk'] = $this->M_Ujian->getUjian($id_ud)->result_array();
+        $data['soal'] = $this->M_Ujian->getAllSoal($ujian["kd_ujian"]);
+        $data['jmlsoal'] = count($this->M_Ujian->getAllSoal($ujian['kd_ujian']));
         $data['mapel'] = $this->M_Mapel->getMapelGuru($this->session->userdata('username'));
         $data['kelas'] = $this->M_Kelas->getKelasMapelGuru($this->session->userdata('username'));
-        $data['kd_ujian'] = $kd_ujian;
+        $data['kd_ujian'] = $ujian['kd_ujian'];
         $this->load->view('guru/header');
-        $this->load->view('v_editUjian', $data);
+        $this->load->view('guru/v_editUjian', $data);
         $this->load->view('guru/footer');
-        $this->session->set_userdata(array('kd_ujian' => $kd_ujian));
+        $this->session->set_userdata(array('kd_ujian' => $ujian['kd_ujian']));
+        $this->session->set_userdata(array('kd_kelas' => $ujian['kd_kelas']));
+        $this->session->set_userdata(array('kd_mapel' => $ujian['kd_mapel']));
+        $this->session->set_userdata(array('id_ud' => $id_ud));
 
         if (isset($_POST['submitEdit'])) {
             $id_ud = $this->input->post('id_ud');
@@ -168,7 +173,7 @@ class Guru extends CI_Controller {
     {
         $data['soal'] = $this->M_Ujian->getSoal($idSoal);
         $this->load->view('guru/header');
-        $this->load->view('v_editSoal', $data);
+        $this->load->view('guru/v_editSoal', $data);
         $this->load->view('guru/footer');
 
         if (isset($_POST['simpan'])) {
@@ -191,6 +196,11 @@ class Guru extends CI_Controller {
     {
         $this->M_Ujian->deleteBankSoal($id_soal);
         redirect("guru/daftarSoal");
+    }
+    public function hapusSoalUjian($id_soalUjian)
+    {
+        $this->M_Ujian->deleteSoalUjian($id_soalUjian);
+        redirect("guru/editUjian/".$this->session->userdata('id_ud'));
     }
     public function setKodeUjian()
     {

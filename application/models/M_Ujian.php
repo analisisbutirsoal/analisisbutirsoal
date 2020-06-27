@@ -34,20 +34,34 @@ class M_Ujian extends CI_Model
     {
         return $this->db->get('ujian')->last_row('array');
     }
-    public function getUjian($kd_ujian, $kd_kelas)
+    public function getUjian($id_ud)
     {
         $this->db->select('*');
         $this->db->from('ujian_detail ud');
         $this->db->join('ujian u', 'u.kd_ujian = ud.kd_ujian');
         $this->db->join('kelas k', 'k.kd_kelas = ud.kd_kelas');
         $this->db->join('mapel m', 'm.kd_mapel = ud.kd_mapel');
-        $this->db->where('ud.kd_ujian', $kd_ujian);
-        $this->db->where('ud.kd_kelas', $kd_kelas);
+        $this->db->where('ud.id_ud', $id_ud);
+        return $this->db->get();
+    }
+    public function getUjianSiswa($kd_siswa)
+    {
+        $this->db->select('*');
+        $this->db->from('ujian_detail ud');
+        $this->db->join('ujian u', 'u.kd_ujian = ud.kd_ujian');
+        $this->db->join('kelas k', 'k.kd_kelas = ud.kd_kelas');
+        $this->db->join('siswa s', 's.kd_kelas = k.kd_kelas');
+        $this->db->join('mapel m', 'm.kd_mapel = ud.kd_mapel');
+        $this->db->where('s.nisn', $kd_siswa);
         return $this->db->get()->result_array();
     }
     public function getBankSoal($kd_guru)
     {
         return $this->db->get_where('bank_soal', array('kd_guru' => $kd_guru))->result_array();
+    }
+    public function getSoalMapel($kd_mapel)
+    {
+        return $this->db->get_where('bank_soal', array('kd_mapel' => $kd_mapel))->result_array();
     }
     public function getAllSoal($kd_ujian)
     {
@@ -85,5 +99,10 @@ class M_Ujian extends CI_Model
     {
         $this->db->where('id_soal', $id_soal);
         return $this->db->delete('bank_soal');
+    }
+    public function deleteSoalUjian($id_soalUjian)
+    {
+        $this->db->where('id_soalUjian', $id_soalUjian);
+        return $this->db->delete('soal_ujian');
     }
 }

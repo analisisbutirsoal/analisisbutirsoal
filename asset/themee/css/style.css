@@ -5698,6 +5698,16 @@ div#sparklinehome canvas {
 	padding: 5px 15px;
 }
 
+.datatable-dashv1-list .pd-setting {
+	border: none;
+	color: #fff;
+	padding: 5px 15px;
+	font-size: 15px;
+	background: #006DF0;
+	border-radius: 3px;
+	outline: none;
+}
+
 .datatable-dashv1-list .editable-submit {
 	background: #006DF0;
 	color: #fff;

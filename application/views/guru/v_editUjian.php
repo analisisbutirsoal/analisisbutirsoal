@@ -164,7 +164,7 @@
                                                         <td><?= $soal['pertanyaan']?></td>
                                                         <td></td>
                                                         <td rowspan="5" style="vertical-align:middle; text-align:right; padding-right:25px;">
-                                                            <a href="<?= site_url("guru/hapusSoalUjian/".$soal["id_soal"])?>" class="btn btn-light"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                            <a href="<?= site_url("guru/hapusSoalUjian/".$soal["id_soalUjian"])?>" class="btn btn-light"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
                                                     <tr style="vertical-align:top;">

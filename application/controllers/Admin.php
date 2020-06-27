@@ -17,20 +17,20 @@ class Admin extends CI_Controller {
         $data['kelas'] = count($this->M_Kelas->listKelas());
         $data['mapel'] = count($this->M_Mapel->listDetailMapel());
 		$this->load->view('admin/header');
-        $this->load->view('v_dashboardAdmin', $data);
+        $this->load->view('admin/v_dashboardAdmin', $data);
         $this->load->view('admin/footer');
     }
     public function daftarGuru()
     {
         $data['guru'] = $this->M_Guru->listGuru();
         $this->load->view('admin/header');
-        $this->load->view('v_daftarGuru', $data);
+        $this->load->view('admin/v_daftarGuru', $data);
         $this->load->view('admin/footer');
     }
     public function addGuru()
     {
         $this->load->view('admin/header');
-        $this->load->view('v_addGuru');
+        $this->load->view('admin/v_addGuru');
         $this->load->view('admin/footer');
 
         if (isset($_POST['submit'])) {
@@ -54,7 +54,7 @@ class Admin extends CI_Controller {
     {
         $data['edit'] = $this->M_Guru->getGuru($id);
         $this->load->view('admin/header');
-        $this->load->view('v_editGuru', $data);
+        $this->load->view('admin/v_editGuru', $data);
         $this->load->view('admin/footer');
         
         if (isset($_POST['submitEdit'])) {
@@ -97,7 +97,7 @@ class Admin extends CI_Controller {
     {
         $data['siswa'] = $this->M_Siswa->listSiswa();
         $this->load->view('admin/header');
-        $this->load->view('v_daftarSiswa', $data);
+        $this->load->view('admin/v_daftarSiswa', $data);
         $this->load->view('admin/footer');
     }
     public function addSiswa()
@@ -105,7 +105,7 @@ class Admin extends CI_Controller {
         $data['kelas'] = $this->M_Kelas->getKelas();
         $data['tahun'] = $this->M_Kelas->getTahun();
         $this->load->view('admin/header');
-        $this->load->view('v_addSiswa', $data);
+        $this->load->view('admin/v_addSiswa', $data);
         $this->load->view('admin/footer');
         if (isset($_POST['submit'])) {
             $user['username'] = $this->input->post('username');
@@ -137,7 +137,7 @@ class Admin extends CI_Controller {
         $data['tahun'] = $this->M_Kelas->getTahun();
         $data['edit'] = $this->M_Siswa->getSiswa($id);
         $this->load->view('admin/header');
-        $this->load->view('v_editSiswa', $data);
+        $this->load->view('admin/v_editSiswa', $data);
         $this->load->view('admin/footer');
 
         if (isset($_POST['submitEdit'])) {
@@ -182,13 +182,13 @@ class Admin extends CI_Controller {
     {
         $data['kelas'] = $this->M_Kelas->listKelas();
         $this->load->view('admin/header');
-        $this->load->view('v_daftarKelas', $data);
+        $this->load->view('admin/v_daftarKelas', $data);
         $this->load->view('admin/footer');
     }
     public function addKelas()
     {
         $this->load->view('admin/header');
-        $this->load->view('v_addKelas');
+        $this->load->view('admin/v_addKelas');
         $this->load->view('admin/footer');
 
         if (isset($_POST['submit'])) {
@@ -202,7 +202,7 @@ class Admin extends CI_Controller {
     public function editKelas($id) {
         $data['edit'] = $this->M_Kelas->getDataKelas($id);
         $this->load->view('admin/header');
-        $this->load->view('v_editKelas', $data);
+        $this->load->view('admin/v_editKelas', $data);
         $this->load->view('admin/footer');
 
         if (isset($_POST['submitEdit'])) {
@@ -221,7 +221,7 @@ class Admin extends CI_Controller {
     {
         $data['mapel'] = $this->M_Mapel->listDetailMapel();
         $this->load->view('admin/header');
-        $this->load->view('v_daftarMapel', $data);
+        $this->load->view('admin/v_daftarMapel', $data);
         $this->load->view('admin/footer');
     }
     public function addMapel()
@@ -229,7 +229,7 @@ class Admin extends CI_Controller {
         $data['kelas'] = $this->M_Kelas->listKelas();
         $data['guru'] = $this->M_Guru->listGuru();
         $this->load->view('admin/header');
-        $this->load->view('v_addMapel', $data);
+        $this->load->view('admin/v_addMapel', $data);
         $this->load->view('admin/footer');
 
         if (isset($_POST['submit'])) {
@@ -254,7 +254,7 @@ class Admin extends CI_Controller {
         $data['guru'] = $this->M_Guru->listGuru();
         $data['kelas'] = $this->M_Kelas->listKelas();
         $this->load->view('admin/header');
-        $this->load->view('v_editMapel', $data);
+        $this->load->view('admin/v_editMapel', $data);
         $this->load->view('admin/footer');
         if (isset($_POST['submitEdit'])) {
             $update_md['kd_kelas'] = $this->input->post('kelas');

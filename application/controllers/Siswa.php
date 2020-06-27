@@ -6,15 +6,14 @@ class Siswa extends CI_Controller {
         parent::__construct();
         $this->load->model('M_User');
         $this->load->model('M_Siswa');
-        $this->load->model('M_Siswa');
+        $this->load->model('M_Ujian');
+        $this->load->model('M_Nilai');
         $this->load->model('M_Kelas');
         $this->load->model('M_Mapel');
     }
 	public function index()
 	{
-		$this->load->view('siswa/header');
-        $this->load->view('v_dashboard');
-        $this->load->view('siswa/footer');
+        redirect("siswa/daftarUjian");
     }
     public function editProfil($kd_siswa)
     {
@@ -58,5 +57,76 @@ class Siswa extends CI_Controller {
                 redirect('siswa');
             } 
         }
+    }
+    public function daftarUjian()
+    {
+        $data['ujian'] = $this->M_Ujian->getUjianSiswa($this->session->userdata('username'));
+        $data['status'] = $this->M_Nilai->getNilaiSiswa($this->session->userdata('username'))->num_rows();
+        $this->load->view('siswa/header');
+        $this->load->view('siswa/v_daftarUjian', $data);
+        $this->load->view('siswa/footer');
+    }
+    public function mulaiUjian($id_ud)
+    {
+        $ujian = $this->M_Ujian->getUjian($id_ud)->row_array();
+        $data['desk'] = $this->M_Ujian->getUjian($id_ud)->result_array();
+        $data['soal'] = $this->M_Ujian->getAllSoal($ujian['kd_ujian']);
+        $data['jmlsoal'] = count($this->M_Ujian->getAllSoal($ujian['kd_ujian']));
+        $this->session->set_userdata(array('kd_ujian' => $ujian['kd_ujian']));
+        $this->session->set_userdata(array('id_ujian' => $id_ud));
+        $this->load->view('siswa/header');
+        $this->load->view('siswa/v_ujian', $data);
+        $this->load->view('siswa/footer');
+    }
+    public function koreksiUjian($kd_ujian)
+    {
+        if (isset($_POST['submit'])) {
+            $total = 0; $kosong=0;
+            $jwb = "";
+            $jmlsoal = count($this->M_Ujian->getAllSoal($kd_ujian));
+            $data = $this->M_Ujian->getAllSoal($kd_ujian);
+            foreach ($_POST['id_soal'] as $id) {
+                $i = 0;
+                $id_soal = $this->input->post('id_soal');
+            }
+            for ($i = 0; $i < $jmlsoal; $i++) {
+                $check = $this->input->post('jawaban' . $id_soal[$i]);
+                if ($check != null) {
+                    $jawaban[$i] = $check;
+                } else {
+                    $jawaban[$i] = "0";
+                    $kosong++;
+                }
+                $kunci[$i] = $data[$i]['kunciJawaban'];
+                $jwb .= $jawaban[$i] . "-";
+                if ($jawaban[$i] == $kunci[$i]) {
+                    $skor[$i] = 1;
+                } else {
+                    $skor[$i] = 0;
+                }
+                $total += $skor[$i];
+            }
+            $benar = $total;
+            $salah = $jmlsoal - $benar;
+            $nilai = ($benar / $jmlsoal) * 100;
+            $dt['kd_siswa'] = $this->session->userdata('username');
+            $dt['kd_ujian'] = $kd_ujian;
+            $dt['jawaban'] = $jwb;
+            $dt['benar'] = $benar;
+            $dt['salah'] = $salah;
+            $dt['kosong'] = $kosong;
+            $dt['nilai'] = $nilai;
+            $this->M_Nilai->addNilai($dt);
+            redirect('siswa/hasilUjian/'.$this->session->userdata('id_ujian'));
+        }
+    }
+    public function hasilUjian($id_ud)
+    {
+        $data['desk'] = $this->M_Ujian->getUjian($id_ud)->result_array();
+        $data['siswa'] = $this->M_Siswa->getSiswa($this->session->userdata('username'));
+        $data['nilai'] = $this->M_Nilai->getNilaiSiswa($this->session->userdata('username'))->result_array();
+        $this->load->view('siswa/header');
+        $this->load->view('siswa/v_hasilUjian', $data);
+        $this->load->view('siswa/footer');
     }
 }

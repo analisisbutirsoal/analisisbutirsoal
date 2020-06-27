@@ -35,7 +35,7 @@
                                         <td><a href="#">Lihat Nilai</a></td>
                                         <td><a href="#">Lihat Hasil Analisis</a></td>
                                         <td>
-                                            <button title="Edit" class="btn-default"><a href="<?= site_url("guru/editUjian/".$ujian['kd_ujian']."/".$ujian['kd_kelas'])?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>
+                                            <button title="Edit" class="btn-default"><a href="<?= site_url("guru/editUjian/".$ujian['id_ud'])?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>
                                             <button title="Trash" class="btn-default"><a href="<?= site_url("guru/hapusUjian/".$ujian['id_ud'])?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></button>
                                         </td>
                                     </tr>

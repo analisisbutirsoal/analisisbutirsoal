@@ -45,7 +45,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <img class="main-logo" src="<?=base_url();?>/asset/themee/img/logo.png" alt="" />
+                <img class="main-logo" src="<?=base_url();?>/asset/themee/img/custom.png" alt=""/>
                 <strong><a href="index.html"><img src="<?=base_url();?>/asset/themee/img/logo/logosn.png" alt="" /></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
