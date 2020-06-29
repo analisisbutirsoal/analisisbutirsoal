@@ -38,8 +38,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/ionRangeSlider/ion.rangeSlider.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/ionRangeSlider/ion.rangeSlider.skinFlat.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/datetimepicker/bootstrap-datetimepicker.min.css">
-    <link href="editor.css" type="text/css" rel="stylesheet"/>
-    <script src="editor.js"></script>
     <script src="<?=base_url();?>/asset/themee/js/datepicker/bootstrap-datetimepicker.min.js"></script>
     <script src="<?=base_url();?>/asset/themee/js/vendor/modernizr-2.8.3.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url();?>/asset/themee/img/favicon.ico">

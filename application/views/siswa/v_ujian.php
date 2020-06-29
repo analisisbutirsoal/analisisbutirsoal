@@ -5,6 +5,8 @@
                         <div class="breadcome-list single-page-breadcome" style="margin: 20px 0px 0px 0px;">
                             <?php foreach ($desk as $desk): ?>
                                 <h4 style="display:inline-block;"><?=$desk['nama_ujian'] . ' - ' . $desk['nama_mapel'] . ' - ' . $desk['kelas'] . ' ' . $desk['tahun']?></h4>
+                                <input style="display:none;" id="done" type="text" value="<?= date('M j, Y ', strtotime($desk['tgl_ujian'])).' '.$desk['selesai_ujian']?>">
+                                <h4 id="timer" style="display:inline-block; float:right;"></h4>
                             <?php endforeach;?>
                         </div>
                     </div>
@@ -18,7 +20,7 @@
                         <div class="sparkline8-list">
                             <p>Pilihlah salah satu jawaban yang paling tepat!</p>
                             <div class="review-content-section">
-                                <form action="<?= site_url("siswa/koreksiUjian/".$this->session->userdata('kd_ujian'))?>" method="post">
+                                <form id="formUjian" name="formUjian" action="<?= site_url("siswa/koreksiUjian/".$this->session->userdata('kd_ujian')."/".$this->session->userdata('id_ud'))?>" method="post" >
                                     <div id="dropzone1" class="pro-ad addcoursepro table-responsive">
                                         <?php $noSoal = 0; foreach($soal as $soal) :?>
                                             <table style="width:100%">
@@ -64,7 +66,8 @@
                                     </div>
                                     <div class="col">
                                         <div class="payment-adress" style="text-align:center">
-                                            <button name="submit" class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                                            <input type="text" name="timedone" id="timedone" style="display:block">
+                                            <button onclick="return submitFunction();" id="submitUjian" name="btnSubmit" class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
                                         </div>
                                     </div>
                                 </form>
@@ -121,6 +124,34 @@
                             if (radioA.checked || radioB.checked || radioC.checked || radioD.checked == true) {
                                 edit . setAttribute('class', 'btn btn-success');
                             }
+                        }
+                    </script>
+                    <script type="text/javascript">
+                        var done = document.getElementById('done').value;
+                        var countDownDate = new Date(done).getTime();
+                        var x = setInterval(function() {
+                        var now = new Date().getTime();
+                        // Find the distance between now and the count down date
+                        var distance = countDownDate - now;
+                        // Time calculations for days, hours, minutes and seconds
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        // Display the result in the element with id="demo"
+                        document.getElementById("timer").innerHTML = hours + "h "
+                        + minutes + "m " + seconds + "s ";
+                        // If the count down is finished, write some text
+                            if (distance < 0) {
+                                clearInterval(x);
+                                document.getElementById("timer").innerHTML = "EXPIRED";
+                                submitFunction();
+                            }
+                        }, 1000);
+                        function submitFunction() {
+                            document.getElementById("formUjian").submit();
+                            var tdy = new Date();
+                            document.getElementById("timedone").value = tdy.getHours()+':'+tdy.getMinutes()+':'+tdy.getSeconds();
                         }
                     </script>
                 </div>

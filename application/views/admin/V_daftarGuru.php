@@ -6,7 +6,8 @@
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd">
-                            <h3>Daftar Guru</h3>
+                            <h3 style="display:inline-block;">Daftar Guru</h3>
+                            <a  style="display:inline-blockl; float:right;" class="btn btn-primary waves-effect waves-light" href="<?= site_url("admin/addGuru")?>">Tambah Data Guru</a>
                         </div>
                     </div>
                     <div class="sparkline13-graph">
@@ -41,10 +42,25 @@
                                         }?></td>
                                         <td>
                                             <button title="Edit" class="btn-default"><a href="<?= site_url("admin/editGuru/".$guru['nip_nik'])?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>
-                                            <button title="Trash" class="btn-default"><a href="<?= site_url("admin/hapusGuru/".$guru['nip_nik'])?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></button>
+                                            <button title="Trash" class="btn-default delete-it" data-id="<?= $guru['nip_nik']?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <?php endforeach; ?>
+                                            <script type="text/javascript">
+                                                $(".delete-it").click(function(){
+                                                    var id = $(this).data('id');
+                                                    bootbox.confirm({ 
+                                                        size: "small",
+                                                        locale: "id",
+                                                        message: "Yakin menghapus data ini?",
+                                                        callback: 
+                                                            function(result){
+                                                                if(result)
+                                                                    window.location = 'hapusGuru/' + id;
+                                                            }
+                                                    });
+                                                });
+                                            </script>
                                         </td>
                                     </tr>
-                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

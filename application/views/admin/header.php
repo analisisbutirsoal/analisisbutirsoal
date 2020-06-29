@@ -36,6 +36,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/select2/select2.min.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/ionRangeSlider/ion.rangeSlider.css">
     <link rel="stylesheet" href="<?=base_url();?>/asset/themee/css/ionRangeSlider/ion.rangeSlider.skinFlat.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="<?=base_url();?>/asset/themee/js/vendor/modernizr-2.8.3.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url();?>/asset/themee/img/favicon.ico">
     <title>Online Test</title>
@@ -53,37 +54,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <ul class="metismenu" id="menu1">
                         <li class="active">
                             <a title="Dashboard" href="<?= site_url("admin")?>">
-								   <span class="educate-icon educate-home icon-wrap"></span>
-								   <span class="mini-click-non">Dashboard</span>
+                                <span class="educate-icon educate-home icon-wrap"></span>
+                                <span class="mini-click-non">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a title="Guru" class="has-arrow" href="<?= site_url("admin/daftarGuru")?>" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Guru</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a href="<?= site_url("admin/daftarGuru")?>"><span class="mini-sub-pro">Daftar Guru</span></a></li>
-                                <li><a href="<?= site_url("admin/addGuru")?>"><span class="mini-sub-pro">Tambahkan Guru</span></a></li>
-                            </ul>
+                            <a title="Guru" href="<?= site_url("admin/daftarGuru")?>">
+                                <span class="educate-icon educate-professor icon-wrap"></span>
+                                <span class="mini-click-non">Guru</span>
+                            </a>
                         </li>
                         <li>
-                            <a title="Siswa" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Siswa</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a href="<?= site_url("admin/daftarSiswa")?>"><span class="mini-sub-pro">Daftar Siswa</span></a></li>
-                                <li><a href="<?= site_url("admin/addSiswa")?>"><span class="mini-sub-pro">Tambahkan Siswa</span></a></li>
-                            </ul>
+                            <a title="Siswa" href="<?= site_url("admin/daftarSiswa")?>">
+                                <span class="educate-icon educate-student icon-wrap"></span>
+                                <span class="mini-click-non">Siswa</span>
+                            </a>
                         </li>
                         <li>
-                            <a title="Kelas" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Kelas</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a href="<?= site_url("admin/daftarKelas")?>"><span class="mini-sub-pro">Daftar Kelas</span></a></li>
-                                <li><a href="<?= site_url("admin/addKelas")?>"><span class="mini-sub-pro">Tambahkan Kelas</span></a></li>
-                            </ul>
+                            <a title="Kelas" href="<?= site_url("admin/daftarKelas")?>">
+                                <span class="educate-icon educate-department icon-wrap"></span>
+                                <span class="mini-click-non">Kelas</span>
+                            </a>
                         </li>
                         <li>
-                            <a title="Mapel" class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Mata Pelajaran</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a href="<?= site_url("admin/daftarMapel")?>"><span class="mini-sub-pro">Daftar Mapel</span></a></li>
-                                <li><a href="<?= site_url("admin/addMapel")?>"><span class="mini-sub-pro">Tambahkan Mapel</span></a></li>
-                            </ul>
+                            <a title="Mata Pelajaran" href="<?= site_url("admin/daftarMapel")?>">
+                                    <span class="educate-icon educate-course icon-wrap"></span>
+                                    <span class="mini-click-non">Mata Pelajaran</span>
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -152,25 +149,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         <li><a data-toggle="collapse" data-target="#demoevent" href="#">Guru<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demoevent" class="collapse dropdown-header-top">
                                                 <li><a href="<?= site_url("admin/daftarGuru")?>">Daftar Guru</a></li>
-                                                <li><a href="<?= site_url("admin/addGuru")?>">Tambahkan Guru</a></li>
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#demopro" href="#">Siswa<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demopro" class="collapse dropdown-header-top">
                                                 <li><a href="<?= site_url("admin/daftarSiswa")?>">Daftar Siswa</a></li>
-                                                <li><a href="<?= site_url("admin/addSiswa")?>">Tambahkan Siswa</a></li>
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#democrou" href="#">Kelas<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="democrou" class="collapse dropdown-header-top">
-                                                <li><a href="#">Daftar Kelas</a></li>
-                                                <li><a href="#">Tambahkan Kelas</a></li>
+                                                <li><a href="<?= site_url("admin/daftarKelas")?>">Daftar Kelas</a></li>
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#demolibra" href="#">Mata Pelajaran<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demolibra" class="collapse dropdown-header-top">
-                                                <li><a href="#">Daftar Mapel</a></li>
-                                                <li><a href="#">Tambahkan Mapel</a></li>
+                                                <li><a href="<?= site_url("admin/daftarMapel")?>">Daftar Mapel</a></li>
                                             </ul>
                                         </li>
                                     </ul>

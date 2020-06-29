@@ -12,6 +12,7 @@ class M_Guru extends CI_Model
         $this->db->select('*');
         $this->db->from('user');
         $this->db->join('guru', 'guru.nip_nik = user.username');
+        $this->db->order_by('guru.id', 'asc');
         return $this->db->get()->result_array();
     }
     public function getGuru($id)

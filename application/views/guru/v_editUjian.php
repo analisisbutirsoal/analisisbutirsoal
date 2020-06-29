@@ -164,7 +164,24 @@
                                                         <td><?= $soal['pertanyaan']?></td>
                                                         <td></td>
                                                         <td rowspan="5" style="vertical-align:middle; text-align:right; padding-right:25px;">
-                                                            <a href="<?= site_url("guru/hapusSoalUjian/".$soal["id_soalUjian"])?>" class="btn btn-light"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                            <a class="delete-it" data-id="<?= $soal["id_soalUjian"]?>" href="" class="btn btn-light"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                            <script type="text/javascript">
+                                                                $('.delete-it').on('click', function (e) {
+                                                                    e.preventDefault();
+                                                                    href = $(this).attr('hapusSoal/');
+                                                                    var id = $(this).data('id');
+                                                                    return bootbox.confirm({ 
+                                                                        size: "small",
+                                                                        locale: "id",
+                                                                        message: "Yakin menghapus data ini?",
+                                                                        callback: 
+                                                                            function(result){
+                                                                                if(result)
+                                                                                    window.location = 'hapusSoalUjian/' + id;
+                                                                            }
+                                                                    });
+                                                                });
+                                                            </script>
                                                         </td>
                                                     </tr>
                                                     <tr style="vertical-align:top;">

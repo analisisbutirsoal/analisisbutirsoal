@@ -52,16 +52,16 @@ class M_Ujian extends CI_Model
         $this->db->join('kelas k', 'k.kd_kelas = ud.kd_kelas');
         $this->db->join('siswa s', 's.kd_kelas = k.kd_kelas');
         $this->db->join('mapel m', 'm.kd_mapel = ud.kd_mapel');
+        $this->db->join('nilai n', 'n.kd_ujian = u.kd_ujian', 'left');
         $this->db->where('s.nisn', $kd_siswa);
+        $this->db->where('ud.active', '1');
         return $this->db->get()->result_array();
     }
-    public function getBankSoal($kd_guru)
+    public function getBankSoal($key, $value)
     {
-        return $this->db->get_where('bank_soal', array('kd_guru' => $kd_guru))->result_array();
-    }
-    public function getSoalMapel($kd_mapel)
-    {
-        return $this->db->get_where('bank_soal', array('kd_mapel' => $kd_mapel))->result_array();
+        $this->db->where($key, $value);
+        $this->db->order_by('kd_mapel', 'asc');
+        return $this->db->get('bank_soal')->result_array();
     }
     public function getAllSoal($kd_ujian)
     {

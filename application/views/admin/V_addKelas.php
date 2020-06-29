@@ -33,6 +33,7 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="payment-adress">
+                                        <input class="btn btn-danger" action="action" onclick="window.history.go(-1); return false;" type="submit" value="Batal"/>
                                         <button name="submit" type="submit" class="btn btn-primary waves-effect waves-light">Tambah</button>
                                     </div>
                                 </div>

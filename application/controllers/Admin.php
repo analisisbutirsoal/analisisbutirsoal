@@ -15,7 +15,7 @@ class Admin extends CI_Controller {
         $data['guru'] = count($this->M_Guru->listGuru());
         $data['siswa'] = count($this->M_Siswa->listSiswa());
         $data['kelas'] = count($this->M_Kelas->listKelas());
-        $data['mapel'] = count($this->M_Mapel->listDetailMapel());
+        $data['mapel'] = count($this->M_Mapel->listMapel());
 		$this->load->view('admin/header');
         $this->load->view('admin/v_dashboardAdmin', $data);
         $this->load->view('admin/footer');
@@ -62,11 +62,9 @@ class Admin extends CI_Controller {
             $field['nama'] = $this->input->post('nama');
             $field['alamat'] = $this->input->post('alamat');
             $field['phone'] = $this->input->post('phone');
-            $field['jabatan'] = $this->input->post('jabatan');
             //jika alamat, phone, jabatan tidak diubah
             $field['alamat'] != 'Alamat' ? $field['alamat'] = $field['alamat'] : $field['alamat'] = "";
             $field['phone'] != 'Phone' ? $field['phone'] = $field['phone'] : $field['phone'] = "";
-            $field['jabatan'] != 'Jabatan' ? $field['jabatan'] = $field['jabatan'] : $field['jabatan'] = "";
             //upload foto
             $config['upload_path'] = './upload/guru/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -79,11 +77,13 @@ class Admin extends CI_Controller {
                 } else {
                     $upload = $this->upload->data();
                     $field['foto'] = $upload['file_name'];
-                    $this->M_Guru->updateGuru($id, $field);
+                    $this->M_User->updateData(array('username' => $field['nip_nik']), $id);
+                    $this->M_Guru->updateGuru($field['nip_nik'], $field);
                     redirect('admin/daftarGuru');
                 }
             } else {
-                $this->M_Guru->updateGuru($id, $field);
+                $this->M_User->updateData(array('username' => $field['nip_nik']), $id);
+                $this->M_Guru->updateGuru($field['nip_nik'], $field);
                 redirect('admin/daftarGuru');
             } 
         }
@@ -125,7 +125,7 @@ class Admin extends CI_Controller {
 
                 $siswa['nisn'] = $user['username'];
                 $siswa['nama'] = $this->input->post('nama');
-                $siswa['kelas'] = $kode['kd_kelas'];
+                $siswa['kd_kelas'] = $kode['kd_kelas'];
                 $this->M_Siswa->addSiswa($siswa);
                 redirect('admin/daftarSiswa');
             }
@@ -148,28 +148,30 @@ class Admin extends CI_Controller {
             $kls = $this->input->post('kelas');
             $thn = $this->input->post('tahun');
             $kode = $this->M_Kelas->getKode($kls, $thn);
-            $siswaBaru['kelas'] = $kode['kd_kelas'];
-
-            if ($siswaBaru['alamat'] != 'Alamat' || $siswaBaru['phone'] != 'Phone') {
-                //upload foto
-                $config['upload_path'] = './upload/siswa/';
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size'] = 10240;
-                $this->load->library('upload', $config);
-                if (!empty($_FILES['foto']['name'])) {
-                    if (!$this->upload->do_upload('foto')) {
-                        $error = array('error' => $this->upload->display_errors());
-                        print_r($error);
-                    } else {
-                        $upload = $this->upload->data();
-                        $siswaBaru['foto'] = $upload['file_name'];
-                        $this->M_Siswa->updateSiswa($id, $siswaBaru);
-                        redirect('admin/daftarSiswa');
-                    }
+            $siswaBaru['kd_kelas'] = $kode['kd_kelas'];
+            //jika alamat, phone, jabatan tidak diubah
+            $siswaBaru['alamat'] != 'Alamat' ? $siswaBaru['alamat'] = $siswaBaru['alamat'] : $siswaBaru['alamat'] = "";
+            $siswaBaru['phone'] != 'Phone' ? $siswaBaru['phone'] = $siswaBaru['phone'] : $siswaBaru['phone'] = "";
+            //upload foto
+            $config['upload_path'] = './upload/siswa/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = 10240;
+            $this->load->library('upload', $config);
+            if (!empty($_FILES['foto']['name'])) {
+                if (!$this->upload->do_upload('foto')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    print_r($error);
                 } else {
-                    $this->M_Siswa->updateSiswa($id, $siswaBaru);
+                    $upload = $this->upload->data();
+                    $field['foto'] = $upload['file_name'];
+                    $this->M_User->updateData(array('username' => $siswaBaru['nisn']), $id);
+                    $this->M_Siswa->updateSiswa($siswaBaru['nisn'], $siswaBaru);
                     redirect('admin/daftarSiswa');
                 }
+            } else {
+                $this->M_User->updateData(array('username' => $siswaBaru['nisn']), $id);
+                $this->M_Siswa->updateSiswa($siswaBaru['nisn'], $siswaBaru);
+                redirect('admin/daftarSiswa');
             }
         }
     }

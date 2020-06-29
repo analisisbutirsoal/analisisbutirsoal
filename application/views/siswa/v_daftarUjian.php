@@ -7,6 +7,7 @@
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
                                     <h3 style="display:inline-block;">Daftar Ujian</h3>
+                                    <p id="timer"></p>
                                 </div>
                             </div>
                             <div class="sparkline13-graph">
@@ -25,8 +26,8 @@
                                                 <th data-field="action"></th>
                                             </tr>
                                         </thead>
-                                        <?php foreach ($ujian as $ujian) : ?>
                                         <tbody>
+                                        <?php $i = 0; foreach ($ujian as $ujian) : ?>
                                             <tr>
                                                 <td><?= $ujian['nama_ujian']?></td>
                                                 <td><?= $ujian['nama_mapel']?></td>
@@ -36,25 +37,54 @@
                                                 <td><?= date("h:i A", strtotime($ujian['mulai_ujian']))?></td>
                                                 <td><?= date_diff(new DateTime($ujian['mulai_ujian']), new DateTime($ujian['selesai_ujian']))->i.' menit'?></td>
                                                 <td>
-                                                    <?php if ($status > 0) {?>
+                                                    <?php if ($ujian['nilai'] != null) {?>
                                                         <a href="<?= site_url('siswa/hasilUjian/'.$ujian['id_ud'])?>"><button class="btn btn-info">Review</button></a>
                                                     <?php } else {?>
-                                                        <a href="<?= site_url('siswa/mulaiUjian/'.$ujian['id_ud'])?>"><button id="btnMulai" class="btn btn-success">Mulai</button></a>
+                                                        <a href="<?= site_url('siswa/mulaiUjian/'.$ujian['id_ud'])?>"><button id="<?= "btnMulai".$i?>" class="btn btn-success">Mulai</button></a>
                                                     <?php }?>
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                        <input id="tglUjian" type="text" value="<?= $ujian['tgl_ujian']?>" style="display:none">
+                                            <input id="<?= "tglUjian".$i?>" type="text" value="<?= $ujian['tgl_ujian']?>" style="display:none">
+                                            <input id="<?= "mulaiUjian".$i?>" type="text" value="<?= date("h:i", strtotime($ujian['mulai_ujian']))?>" style="display:none">
+                                            <input id="<?= "selesaiUjian".$i++?>" type="text" value="<?= date("h:i", strtotime($ujian['selesai_ujian']))?>" style="display:none">
                                         <?php endforeach;?>
+                                            <input id="jml" type="text" value="<?= $jmlUjian?>" style="display:none">
+                                        </tbody>
                                     </table>
                                     <script type="text/javascript">
                                         var today = new Date();
-                                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-                                        var tglUjian = document.getElementById("tglUjian").value;
-                                        if (date === tglUjian) {
-                                            document.getElementById("btnMulai").disabled = false;
-                                        } else {
-                                            document.getElementById("btnMulai").disabled = false;
+                                        var month = today.getMonth()+1;
+                                        var date = today.getDate();
+                                        if (month < 10) {
+                                            month = "0" + month;
+                                        }
+                                        if (date < 10) {
+                                            date = "0" + date;
+                                        }
+                                        var day = today.getFullYear()+'-'+month+'-'+date;
+                                        var hour = today.getHours();
+                                        var min = today.getMinutes()
+                                        if (hour < 10) {
+                                            hour = "0" + hour;
+                                        }
+                                        if (min < 10) {
+                                            min = "0" + min;
+                                        }
+                                        var time = hour + ":" + min;
+                                        var jml = document.getElementById("jml").value;
+                                        for (let index = 0; index < jml; index++) {
+                                            var tglUjian = document.getElementById("tglUjian"+index).value;
+                                            var mulaiUjian = document.getElementById("mulaiUjian"+index).value;
+                                            var selesaiUjian = document.getElementById("selesaiUjian"+index).value;
+                                            if (tglUjian != day) {
+                                                if (document.getElementById("btnMulai"+index)!=null) {
+                                                    document.getElementById("btnMulai"+index).disabled = false;
+                                                }
+                                            } else {
+                                                if (time <= mulaiUjian || time >= selesaiUjian) {
+                                                    document.getElementById("btnMulai"+index).disabled = true;
+                                                }
+                                            }
                                         }
                                     </script>
                                 </div>

@@ -31,7 +31,24 @@
                                                         <td></td>
                                                         <td rowspan="5" style="vertical-align:middle; text-align:right; padding-right:25px;">
                                                             <a href="<?= site_url("guru/editSoal/".$soal["id_soal"])?>" class="btn btn-light"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                            <a href="<?= site_url("guru/hapusSoal/".$soal["id_soal"])?>" class="btn btn-light"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                            <a class="delete-it" data-id="<?= $soal["id_soal"]?>" href="" class="btn btn-light"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                            <script type="text/javascript">
+                                                                $('.delete-it').on('click', function (e) {
+                                                                    e.preventDefault();
+                                                                    href = $(this).attr('hapusSoal/');
+                                                                    var id = $(this).data('id');
+                                                                    return bootbox.confirm({ 
+                                                                        size: "small",
+                                                                        locale: "id",
+                                                                        message: "Yakin menghapus data ini?",
+                                                                        callback: 
+                                                                            function(result){
+                                                                                if(result)
+                                                                                    window.location = 'hapusSoal/' + id;
+                                                                            }
+                                                                    });
+                                                                });
+                                                            </script>
                                                         </td>
                                                     </tr>
                                                     <tr style="vertical-align:top;">

@@ -6,7 +6,8 @@
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd">
-                            <h3>Daftar Siswa</h3>
+                            <h3 style="display:inline-block;">Daftar Siswa</h3>
+                            <a  style="display:inline-block; float:right;" class="btn btn-primary waves-effect waves-light" href="<?= site_url("admin/addSiswa")?>">Tambah Data Siswa</a>
                         </div>
                     </div>
                     <div class="sparkline13-graph">
@@ -43,10 +44,25 @@
                                         }?></td>
                                         <td>
                                             <button title="Edit" class="btn-default"><a href="<?= site_url("admin/editSiswa/".$sis['nisn'])?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>
-                                            <button title="Trash" class="btn-default"><a href="<?= site_url("admin/hapusSiswa/".$sis['nisn'])?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></button>
+                                            <button title="Trash" class="btn-default delete-it" data-id="<?= $sis['nisn']?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <?php endforeach; ?>
+                                            <script type="text/javascript">
+                                                $(".delete-it").click(function(){
+                                                    var id = $(this).data('id');
+                                                    bootbox.confirm({ 
+                                                        size: "small",
+                                                        locale: "id",
+                                                        message: "Yakin menghapus data ini?",
+                                                        callback: 
+                                                            function(result){
+                                                                if(result)
+                                                                    window.location = 'hapusSiswa/' + id;
+                                                            }
+                                                    });
+                                                });
+                                            </script>
                                         </td>
                                     </tr>
-                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

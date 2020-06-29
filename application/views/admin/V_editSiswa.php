@@ -7,7 +7,7 @@
                     <div id="dropzone1" class="pro-ad">
                         <h3>Edit Data Siswa</h3>
                         <?php foreach ($edit as $siswa) : ?>
-                        <form action="<?= site_url("admin/editSiswa/".$siswa['nisn'])?>" method="post" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload" enctype= "multipart/form-data">
+                        <form action="<?= site_url("admin/editSiswa/".$siswa['nisn'])?>" method="post" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload" enctype="multipart/form-data">
                             <div class="row h-100 justify-content-center">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">  
                                     <div class="form-group">
@@ -34,11 +34,11 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
-                                                <select name="kelas" data-placeholder="<?= $siswa['kelas']?>" class="chosen-select" tabindex="-1" required>
+                                                <select name="kelas" data-placeholder="<?= $siswa{'kelas'}?>" class="chosen-select" tabindex="-1" required>
+                                                    <option selected="selected" value="<?= $siswa['kelas']?>"></option>
                                                     <?php foreach($kelas as $kls) : ?>
-                                                    <option value=""></option>
-                                                    <option value="<?= $kls['kelas']?>"><?= $kls['kelas']?></option>
-                                                    <?php endforeach; ?>
+                                                    <option value="<?= $kls['kelas']?>"><?= $kls{'kelas'}?></option>
+                                                    <?php endforeach;?>
                                                 </select>
                                             </div>
                                         </div>
@@ -47,10 +47,10 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
-                                                <select name="tahun" data-placeholder="<?= $siswa['tahun']?>" class="chosen-select" tabindex="-1" required>
+                                                <select name="tahun" data-placeholder="<?= $siswa{'tahun'}?>" class="chosen-select" tabindex="-1" required>
+                                                    <option selected="selected" value="<?= $siswa['tahun']?>"></option>
                                                     <?php foreach($tahun as $thn) : ?>
-                                                    <option value=""></option>
-                                                    <option value="<?= $thn['tahun']?>"><?= $thn['tahun']?></option>
+                                                    <option value="<?= $thn['tahun']?>"><?= $thn{'tahun'}?></option>
                                                     <?php endforeach;?>
                                                 </select>
                                             </div>
@@ -71,13 +71,12 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="payment-adress">
-                                        <a class="btn btn-danger" href="<?= site_url('admin/daftarSiswa')?>">Batal</a>
+                                        <a class="btn btn-danger" href="<?= site_url("admin/daftarSiswa")?>">Batal</a>
                                         <button name="submitEdit" type="submit" class="btn btn-primary waves-effect waves-light">Edit</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        
                     </div>
                 </div>
             </div>

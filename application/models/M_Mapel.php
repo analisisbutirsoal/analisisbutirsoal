@@ -10,11 +10,11 @@ class M_Mapel extends CI_Model
     public function listDetailMapel()
     {
         $this->db->select('*'); 
-        $this->db->from('mapel_detail d');
-        $this->db->join('mapel m', 'm.kd_mapel = d.kd_mapel');
-        $this->db->join('guru g', 'g.nip_nik = d.guru');
-        $this->db->join('kelas k', 'k.kd_kelas = d.kd_kelas');
-        $this->db->order_by('k.tahun', 'asc');
+        $this->db->from('mapel_detail md');
+        $this->db->join('mapel m', 'm.kd_mapel = md.kd_mapel');
+        $this->db->join('guru g', 'g.nip_nik = md.guru');
+        $this->db->join('kelas k', 'k.kd_kelas = md.kd_kelas');
+        $this->db->order_by('md.id_md', 'asc');
         return $this->db->get()->result_array();
     }
     public function addMapel($data)

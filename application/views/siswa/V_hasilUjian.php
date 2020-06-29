@@ -52,7 +52,7 @@
                                 </tr>
                             </table>
                             <div class="payment-adress" style="text-align:center">
-                                <input class="btn btn-primary waves-effect waves-light" action="action" onclick="window.history.go(-1); return false;" type="submit" value="Kembali"/>
+                                <a class="btn btn-primary waves-effect waves-light" href="<?= site_url("siswa/daftarUjian")?>">Kembali</a>
                             </div>
                             <?php endforeach;?>
                         </div>

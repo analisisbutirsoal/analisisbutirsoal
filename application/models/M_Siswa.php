@@ -13,6 +13,7 @@ class M_Siswa extends CI_Model
         $this->db->from('siswa s');
         $this->db->join('kelas k', 'k.kd_kelas = s.kd_kelas');  
         $this->db->join('user u', 'u.username = s.nisn');
+        $this->db->order_by('s.id', 'asc');
         return $this->db->get()->result_array();
     }
     public function getSiswa($id)

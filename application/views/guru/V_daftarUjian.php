@@ -22,6 +22,7 @@
                                         <th data-field="tglUjian">Tanggal Ujian</th>
                                         <th data-field="nilai">Daftar Nilai</th>
                                         <th data-field="hasil">Hasil Analisis</th>
+                                        <th data-field="active"></th>
                                         <th data-field="action">Action</th>
                                     </tr>
                                 </thead>
@@ -32,14 +33,36 @@
                                         <td><?= $ujian['nama_mapel']?></td>
                                         <td><?= $ujian['kelas'].' '.$ujian['tahun']?></td>
                                         <td><?= date("d-m-Y", strtotime($ujian['tgl_ujian']))?></td>
-                                        <td><a href="#">Lihat Nilai</a></td>
+                                        <td><a href="<?= site_url("guru/daftarNilai/" . $ujian['id_ud'])?>">Lihat Nilai</a></td>
                                         <td><a href="#">Lihat Hasil Analisis</a></td>
                                         <td>
+                                            <?php if ($ujian['active'] == 0) {?>
+                                                <a href="<?= site_url("guru/cekActivate/" . $ujian['id_ud'])?>"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                            <?php } else {?>
+                                                <a href="<?= site_url("guru/cekActivate/" . $ujian['id_ud'])?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            <?php }?>
+                                        </td>
+                                        <td>
                                             <button title="Edit" class="btn-default"><a href="<?= site_url("guru/editUjian/".$ujian['id_ud'])?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>
-                                            <button title="Trash" class="btn-default"><a href="<?= site_url("guru/hapusUjian/".$ujian['id_ud'])?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></button>
+                                            <button title="Trash" class="btn-default delete-it" data-id="<?= $ujian['id_ud']?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <?php endforeach; ?>
+                                            <script type="text/javascript">
+                                                $(".delete-it").click(function(){
+                                                    var id = $(this).data('id');
+                                                    bootbox.confirm({ 
+                                                        size: "small",
+                                                        locale: "id",
+                                                        message: "Yakin menghapus data ini?",
+                                                        callback: 
+                                                            function(result){
+                                                                if(result)
+                                                                    window.location = 'hapusUjian/' + id;
+                                                            }
+                                                    });
+                                                });
+                                            </script>
                                         </td>
                                     </tr>
-                                <?php endforeach;?>
                                 </tbody>
                             </table>
                         </div>
