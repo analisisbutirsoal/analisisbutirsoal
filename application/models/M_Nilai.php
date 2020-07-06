@@ -17,22 +17,35 @@ class M_Nilai extends CI_Model
     }
     public function listNilaiUjian($id_ud)
     {
-        $this->db->select('s.nama, n.waktu, n.benar, n.salah, n.kosong, n.nilai, u.nilaiKKM');
-        $this->db->from('nilai n');
-        $this->db->join('siswa s', 's.nisn = n.kd_siswa', 'left');
-        $this->db->join('ujian_detail ud', 'ud.kd_kelas = s.kd_kelas', 'left');
-        $this->db->join('ujian u', 'u.kd_ujian = ud.kd_ujian', 'left');
-        $this->db->where('ud.id_ud', $id_ud);
-        $query1 = $this->db->get_compiled_select();
-
-        $this->db->select('s.nama, n.waktu, n.benar, n.salah, n.kosong, n.nilai, u.nilaiKKM');
-        $this->db->from('nilai n');
-        $this->db->join('siswa s', 's.nisn = n.kd_siswa', 'right');
-        $this->db->join('ujian_detail ud', 'ud.kd_kelas = s.kd_kelas', 'right');
-        $this->db->join('ujian u', 'u.kd_ujian = ud.kd_ujian', 'right');
-        $this->db->where('ud.id_ud', $id_ud);
-        $query2 = $this->db->get_compiled_select();
-
-        return $this->db->query($query1." UNION ".$query2)->result_array();
+        $query='SELECT * FROM (
+                    SELECT
+                        siswa.nisn,
+                        siswa.nama,
+                        ujian_detail.kd_kelas,
+                        ujian.nilaiKKM
+                        FROM siswa
+                        INNER JOIN ujian_detail
+                            ON siswa.kd_kelas = ujian_detail.kd_kelas
+                        INNER JOIN ujian
+                            ON ujian_detail.kd_ujian = ujian.kd_ujian
+                        WHERE ujian_detail.id_ud = '.$id_ud.') a
+                LEFT JOIN (
+                    SELECT
+                        nilai.kd_ujian,
+                        nilai.kd_siswa,
+                        ujian_detail.id_ud,
+                        nilai.nilai,
+                        nilai.waktu,
+                        nilai.jawaban,
+                        nilai.benar,
+                        nilai.salah,
+                        nilai.kosong
+                        FROM nilai
+                        INNER JOIN ujian_detail
+                            ON nilai.kd_ujian = ujian_detail.kd_ujian
+                        WHERE ujian_detail.id_ud = '.$id_ud.') b
+                ON a.nisn = b.kd_siswa
+                LIMIT 30';
+        return $this->db->query($query)->result_array();
     }
 }

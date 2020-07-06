@@ -48,7 +48,7 @@
                                 <?php endforeach;?>
                                 </tr>
                                 <tr>
-                                    <td class="text-center" colspan="4"><h4><?= "Nilai : ".$nilai['nilai']."<br>"?></h4><h4><?= ($nilai['nilai'] > $desk['nilaiKKM'])?"(Tuntas)":"(Belum Tuntas)"?></h4></td>
+                                    <td class="text-center" colspan="4"><h4><?= "Nilai : ".$nilai['nilai']."<br>"?></h4><h4><?= ($nilai['nilai'] >= $desk['nilaiKKM'])?"(Tuntas)":"(Belum Tuntas)"?></h4></td>
                                 </tr>
                             </table>
                             <div class="payment-adress" style="text-align:center">

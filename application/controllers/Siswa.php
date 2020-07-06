@@ -17,54 +17,62 @@ class Siswa extends CI_Controller {
     }
     public function editProfil($kd_siswa)
     {
-        $data['akun'] = $this->M_Siswa->getSiswa($this->session->userdata('username'));
-        $this->load->view('siswa/header');
-        $this->load->view('v_editProfil', $data);
-        $this->load->view('siswa/footer');
+        if ($this->session->userdata('mulai') == 'true') {
+            redirect('siswa/mulaiUjian/' . $this->session->userdata('id_ud'));
+        } else {
+            $data['akun'] = $this->M_Siswa->getSiswa($this->session->userdata('username'));
+            $this->load->view('siswa/header');
+            $this->load->view('v_editProfil', $data);
+            $this->load->view('siswa/footer');
 
-        if (isset($_POST['submitEdit'])) {
-            $user = $this->M_User->getUser($this->session->userdata('username'));
-            $field['nama'] = $this->input->post('nama');
-            $field['alamat'] = $this->input->post('alamat');
-            $field['phone'] = $this->input->post('phone');
-            $pass = $this->input->post('password');
-            //jika alamat, phone, jabatan tidak diubah
-            $field['alamat'] != 'Alamat' ? $field['alamat'] = $field['alamat'] : $field['alamat'] = "";
-            $field['phone'] != 'Phone' ? $field['phone'] = $field['phone'] : $field['phone'] = "";
-            //upload foto
-            $config['upload_path'] = './upload/siswa/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 10240;
-            $this->load->library('upload', $config);
-            if (!empty($_FILES['foto']['name'])) {
-                if (!$this->upload->do_upload('foto')) {
-                    $error = array('error' => $this->upload->display_errors());
-                    print_r($error);
+            if (isset($_POST['submitEdit'])) {
+                $user = $this->M_User->getUser($this->session->userdata('username'));
+                $field['nama'] = $this->input->post('nama');
+                $field['alamat'] = $this->input->post('alamat');
+                $field['phone'] = $this->input->post('phone');
+                $pass = $this->input->post('password');
+                //jika alamat, phone, jabatan tidak diubah
+                $field['alamat'] != 'Alamat' ? $field['alamat'] = $field['alamat'] : $field['alamat'] = "";
+                $field['phone'] != 'Phone' ? $field['phone'] = $field['phone'] : $field['phone'] = "";
+                //upload foto
+                $config['upload_path'] = './upload/siswa/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 10240;
+                $this->load->library('upload', $config);
+                if (!empty($_FILES['foto']['name'])) {
+                    if (!$this->upload->do_upload('foto')) {
+                        $error = array('error' => $this->upload->display_errors());
+                        print_r($error);
+                    } else {
+                        $upload = $this->upload->data();
+                        $field['foto'] = $upload['file_name'];
+                        if (!empty($pass)) {
+                            $this->M_User->updateData(array('password' => md5($pass)), $kd_siswa);
+                        }
+                        $this->M_Siswa->updateSiswa($kd_siswa, $field);
+                        redirect('siswa');
+                    }
                 } else {
-                    $upload = $this->upload->data();
-                    $field['foto'] = $upload['file_name'];
                     if (!empty($pass)) {
                         $this->M_User->updateData(array('password' => md5($pass)), $kd_siswa);
                     }
                     $this->M_Siswa->updateSiswa($kd_siswa, $field);
                     redirect('siswa');
                 }
-            } else {
-                if (!empty($pass)) {
-                    $this->M_User->updateData(array('password' => md5($pass)), $kd_siswa);
-                }
-                $this->M_Siswa->updateSiswa($kd_siswa, $field);
-                redirect('siswa');
-            } 
+            }
         }
     }
     public function daftarUjian()
     {
-        $data['ujian'] = $this->M_Ujian->getUjianSiswa($this->session->userdata('username'));
-        $data['jmlUjian'] = count($this->M_Ujian->getUjianSiswa($this->session->userdata('username')));
-        $this->load->view('siswa/header');
-        $this->load->view('siswa/v_daftarUjian', $data);
-        $this->load->view('siswa/footer');
+        if ($this->session->userdata('mulai') == 'true') {
+            redirect('siswa/mulaiUjian/'.$this->session->userdata('id_ud'));
+        } else {
+            $data['ujian'] = $this->M_Ujian->getUjianSiswa($this->session->userdata('username'));
+            $data['jmlUjian'] = count($this->M_Ujian->getUjianSiswa($this->session->userdata('username')));
+            $this->load->view('siswa/header');
+            $this->load->view('siswa/v_daftarUjian', $data);
+            $this->load->view('siswa/footer');
+        }
     }
     public function mulaiUjian($id_ud)
     {
@@ -74,12 +82,14 @@ class Siswa extends CI_Controller {
         $data['jmlsoal'] = count($this->M_Ujian->getAllSoal($ujian['kd_ujian']));
         $this->session->set_userdata(array('kd_ujian' => $ujian['kd_ujian']));
         $this->session->set_userdata(array('id_ud' => $id_ud));
+        $this->session->set_userdata(array('mulai' => 'true'));
         $this->load->view('siswa/header');
         $this->load->view('siswa/v_ujian', $data);
         $this->load->view('siswa/footer');
     }
     public function koreksiUjian($kd_ujian, $id_ud)
     {
+        $this->session->unset_userdata('mulai');
         $total = 0;
         $kosong = 0;
         $jwb = "";
@@ -98,7 +108,11 @@ class Siswa extends CI_Controller {
                 $kosong++;
             }
             $kunci[$i] = $data[$i]['kunciJawaban'];
-            $jwb .= $jawaban[$i] . "-";
+            if ($i == $jmlsoal-1) {
+                $jwb .= $jawaban[$i];
+            } else {
+                $jwb .= $jawaban[$i] . "-";
+            }
             if ($jawaban[$i] == $kunci[$i]) {
                 $skor[$i] = 1;
             } else {
@@ -112,6 +126,7 @@ class Siswa extends CI_Controller {
         $dt['waktu'] = $this->input->post('timedone');
         $dt['kd_siswa'] = $this->session->userdata('username');
         $dt['kd_ujian'] = $kd_ujian;
+        $dt['id_ud'] = $id_ud;
         $dt['jawaban'] = $jwb;
         $dt['benar'] = $benar;
         $dt['salah'] = $salah;

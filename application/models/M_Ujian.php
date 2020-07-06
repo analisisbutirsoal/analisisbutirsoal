@@ -46,16 +46,43 @@ class M_Ujian extends CI_Model
     }
     public function getUjianSiswa($kd_siswa)
     {
-        $this->db->select('*');
-        $this->db->from('ujian_detail ud');
-        $this->db->join('ujian u', 'u.kd_ujian = ud.kd_ujian');
-        $this->db->join('kelas k', 'k.kd_kelas = ud.kd_kelas');
-        $this->db->join('siswa s', 's.kd_kelas = k.kd_kelas');
-        $this->db->join('mapel m', 'm.kd_mapel = ud.kd_mapel');
-        $this->db->join('nilai n', 'n.kd_ujian = u.kd_ujian', 'left');
-        $this->db->where('s.nisn', $kd_siswa);
-        $this->db->where('ud.active', '1');
-        return $this->db->get()->result_array();
+        $query = 'SELECT * FROM (
+                        SELECT
+                    mapel.nama_mapel,
+                    ujian_detail.id_ud,
+                    ujian_detail.active,
+                    ujian_detail.kd_ujian,
+                    ujian.nama_ujian,
+                    kelas.kelas,
+                    kelas.tahun,
+                    ujian.tgl_ujian,
+                    ujian.jumlah_soal,
+                    ujian.mulai_ujian,
+                    ujian.selesai_ujian,
+                    ujian_detail.kd_kelas
+                    FROM ujian_detail
+                    INNER JOIN ujian
+                        ON ujian_detail.kd_ujian = ujian.kd_ujian
+                    INNER JOIN kelas
+                        ON ujian_detail.kd_kelas = kelas.kd_kelas
+                    INNER JOIN mapel
+                        ON ujian_detail.kd_mapel = mapel.kd_mapel
+                    WHERE ujian_detail.active = 1) AS x 
+                    JOIN
+                    (SELECT
+                    ujian_detail.id_ud,
+                    siswa.nisn,
+                    nilai.nilai,
+                    siswa.kd_kelas
+                    FROM nilai
+                    RIGHT OUTER JOIN siswa
+                        ON nilai.kd_siswa = siswa.nisn
+                    INNER JOIN ujian_detail
+                        ON nilai.kd_ujian = ujian_detail.kd_ujian
+                        OR siswa.kd_kelas = ujian_detail.kd_kelas
+                    WHERE siswa.nisn = '.$kd_siswa.') AS y 
+                    ON x.id_ud = y.id_ud';
+        return $this->db->query($query)->result_array();
     }
     public function getBankSoal($key, $value)
     {

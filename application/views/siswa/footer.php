@@ -53,6 +53,7 @@
     <script src="<?= base_url();?>/asset/themee/js/ionRangeSlider/ion.rangeSlider.active.js"></script>
     <script src="<?= base_url();?>/asset/themee/js/input-mask/jasny-bootstrap.min.js"></script>
     <script src="<?= base_url();?>/asset/ckeditor/ckeditor.js"></script>
-    
+    <script src="<?= base_url();?>/asset/bootbox/bootbox.min.js"></script>
+    <script src="<?= base_url();?>/asset/bootbox/bootbox.locales.min.js"></script>
 </body>
 </html>

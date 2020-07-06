@@ -26,8 +26,8 @@
                                                 <input style="display:none;" id="<?= "kunci".$soal['id_soal']?>" type="text" value="<?= $soal['kunciJawaban']?>">
                                                 <table style="width:100%">
                                                     <tr style="vertical-align:top;">
-                                                        <td style="width:3%"><?= ++$noSoal.".";?></td>
-                                                        <td><?= $soal['pertanyaan']?></td>
+                                                        <td style="width:3.5%; padding-top:2px; text-align:center;"><?= ++$noSoal.".";?></td>
+                                                        <td style="width:85%; text-align:justify; text-justify:inter-word"><?= $soal['pertanyaan']?></td>
                                                         <td></td>
                                                         <td rowspan="5" style="vertical-align:middle; text-align:right; padding-right:25px;">
                                                             <a href="<?= site_url("guru/editSoal/".$soal["id_soal"])?>" class="btn btn-light"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

@@ -42,8 +42,8 @@
                                     <div class="review-content-section">
                                         <div id="dropzone1" class="pro-ad addcoursepro">
                                         <?php foreach($desk as $desk) :?>
-                                            <form action="<?= site_url("guru/editUjian/").$desk['kd_ujian']."/".$desk['kd_kelas']?>" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload" method="post">
-                                            <input style="display:none;" name="id_ud" type="text" value="<?= $desk['id_ud']?>">
+                                            <form action="<?= site_url("guru/editUjian/").$desk['id_ud']?>" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload" method="post">
+                                            <input style="display:none;" name="kd_ujian" type="text" value="<?= $desk['kd_ujian']?>">
                                                 <div class="row">
                                                     <div class="form-group row">
                                                         <label for="nama" class="col-sm-3 col-form-label">Nama Ujian</label>
@@ -160,15 +160,14 @@
                                                 <input style="display:none;" id="<?= "kunci".$soal['id_soal']?>" type="text" value="<?= $soal['kunciJawaban']?>">
                                                 <table style="width:100%">
                                                     <tr style="vertical-align:top;">
-                                                        <td style="width:3%"><?= ++$noSoal;?></td>
-                                                        <td><?= $soal['pertanyaan']?></td>
+                                                        <td style="width:3.5%; padding-top:2px; text-align:center;"><?= ++$noSoal;?></td>
+                                                        <td style="width:85%; text-align:justify; text-justify:inter-word"><?= $soal['pertanyaan']?></td>
                                                         <td></td>
                                                         <td rowspan="5" style="vertical-align:middle; text-align:right; padding-right:25px;">
-                                                            <a class="delete-it" data-id="<?= $soal["id_soalUjian"]?>" href="" class="btn btn-light"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                            <a id="hps" class="delete-it" data-id="<?= site_url('guru/hapusSoalUjian/').$soal["id_soalUjian"]?>" href="<?= site_url('guru/hapusSoalUjian/').$soal["id_soalUjian"]?>" class="btn btn-light"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                             <script type="text/javascript">
                                                                 $('.delete-it').on('click', function (e) {
                                                                     e.preventDefault();
-                                                                    href = $(this).attr('hapusSoal/');
                                                                     var id = $(this).data('id');
                                                                     return bootbox.confirm({ 
                                                                         size: "small",
@@ -177,7 +176,7 @@
                                                                         callback: 
                                                                             function(result){
                                                                                 if(result)
-                                                                                    window.location = 'hapusSoalUjian/' + id;
+                                                                                    location = document.getElementById('hps').href;
                                                                             }
                                                                     });
                                                                 });

@@ -26,14 +26,14 @@
                                             <table style="width:100%">
                                                 <tr style="vertical-align:top;">
                                                     <input name="id_soal[]" type="text" value="<?= $soal['id_soal']?>" style="display:none;">
-                                                    <td style="width:3%"><?= ++$noSoal.".";?></td>
-                                                    <td colspan="2"><?= $soal['pertanyaan']?></td>
+                                                    <td style="width:3.5%; padding-top:2px; text-align:center;"><?= ++$noSoal.".";?></td>
+                                                    <td style="width:80%; text-align:justify; text-justify:inter-word" colspan="2"><?= $soal['pertanyaan']?></td>
                                                     <td rowspan = "5" style="vertical-align:middle">
                                                         <div class="form-group row" style="float:right;">
                                                             <div class="col-sm-1">
                                                                 <input onclick="return checkReview(<?= $noSoal?>);" type="checkbox" id="<?= "review".$noSoal?>">
                                                             </div>
-                                                            <label for="review" class="col-sm-1" style="font-weight:normal">Tandai</label>
+                                                            <label for="review" class="col-sm-1" style="font-weight:bold; padding:0 5px 0 5px;">Tandai</label>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -41,33 +41,50 @@
                                                     <td></td>
                                                     <td style="width:3%"><input onclick="return checkJawaban(<?= $noSoal?>);" type="radio" id="<?= 'jawabanA'.$noSoal?>" name="<?= "jawaban".$soal['id_soal']?>" value="a"></td>
                                                     <td style="display:inline-table; margin-right:10px;"><p id="<?= "jwbnA".$soal['id_soal']?>">A.</p></td>
-                                                    <td style="display:inline-table;"><?= $soal['jawabanA']?></td>                                                        
+                                                    <td style="display:inline-table; width:85%"><?= $soal['jawabanA']?></td>                                                        
                                                 </tr>
                                                 <tr style="vertical-align:top;">
                                                     <td></td>
                                                     <td style="width:3%"><input onclick="return checkJawaban(<?= $noSoal?>);" type="radio" id="<?= 'jawabanB'.$noSoal?>" name="<?= "jawaban".$soal['id_soal']?>" value="b"></td>
                                                     <td style="display:inline-table; margin-right:10px;"><p id="<?= "jwbnB".$soal['id_soal']?>">B.</p></td>
-                                                    <td style="display:inline-table;"><?= $soal['jawabanB']?></td>
+                                                    <td style="display:inline-table; width:85%"><?= $soal['jawabanB']?></td>
                                                 </tr>
                                                 <tr style="vertical-align:top;">
                                                     <td></td>
                                                     <td style="width:3%"><input onclick="return checkJawaban(<?= $noSoal?>);" type="radio" id="<?= 'jawabanC'.$noSoal?>" name="<?= "jawaban".$soal['id_soal']?>" value="c"></td>
                                                     <td style="display:inline-table; margin-right:10px;"><p id="<?= "jwbnC".$soal['id_soal']?>">C.</p></td>
-                                                    <td style="display:inline-table;"><?= $soal['jawabanC']?></td>
+                                                    <td style="display:inline-table; width:85%"><?= $soal['jawabanC']?></td>
                                                 </tr>
                                                 <tr style="vertical-align:top;">
                                                     <td></td>
                                                     <td style="width:3%"><input onclick="return checkJawaban(<?= $noSoal?>);" type="radio" id="<?= 'jawabanD'.$noSoal?>" name="<?= "jawaban".$soal['id_soal']?>" value="d"></td>
                                                     <td style="display:inline-table; margin-right:10px;"><p id="<?= "jwbnD".$soal['id_soal']?>">D.</p></td>
-                                                    <td style="display:inline-table;"><?= $soal['jawabanD']?></td>
+                                                    <td style="display:inline-table; width:85%"><?= $soal['jawabanD']?></td>
                                                 </tr>
                                             </table>
                                         <?php endforeach;?>
                                     </div>
                                     <div class="col">
-                                        <div class="payment-adress" style="text-align:center">
-                                            <input type="text" name="timedone" id="timedone" style="display:block">
-                                            <button onclick="return submitFunction();" id="submitUjian" name="btnSubmit" class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                                        <div class="payment-adress" style="text-align:center; margin-top:10px;">
+                                            <input type="text" name="timedone" id="timedone" style="display:none">
+                                            <input name="btnSubmit" onclick="return clicked();" type="button" value="Submit" class="btn btn-primary waves-effect waves-light submitUjian">
+                                            <script type="text/javascript">
+                                                $(".submitUjian").click(function(){
+                                                    var id = $(this).data('id');
+                                                    bootbox.confirm({ 
+                                                        size: "small",
+                                                        locale: "id",
+                                                        message: "Yakin menghapus data ini?",
+                                                        callback: 
+                                                            function(result){
+                                                                if(result == true)
+                                                                    var tdy = new Date();
+                                                                    document.getElementById("timedone").value = tdy.getHours()+':'+tdy.getMinutes()+':'+tdy.getSeconds();
+                                                                    document . getElementById("formUjian") . submit();
+                                                            }
+                                                    });
+                                                });
+                                            </script>
                                         </div>
                                     </div>
                                 </form>
@@ -145,7 +162,7 @@
                             if (distance < 0) {
                                 clearInterval(x);
                                 document.getElementById("timer").innerHTML = "EXPIRED";
-                                submitFunction();
+                                // submitFunction();
                             }
                         }, 1000);
                         function submitFunction() {

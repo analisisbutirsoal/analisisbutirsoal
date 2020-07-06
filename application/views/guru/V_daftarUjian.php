@@ -34,7 +34,7 @@
                                         <td><?= $ujian['kelas'].' '.$ujian['tahun']?></td>
                                         <td><?= date("d-m-Y", strtotime($ujian['tgl_ujian']))?></td>
                                         <td><a href="<?= site_url("guru/daftarNilai/" . $ujian['id_ud'])?>">Lihat Nilai</a></td>
-                                        <td><a href="#">Lihat Hasil Analisis</a></td>
+                                        <td><a href="<?= site_url("guru/hasilAnalisis/" . $ujian['id_ud'])?>">Lihat Hasil Analisis</a></td>
                                         <td>
                                             <?php if ($ujian['active'] == 0) {?>
                                                 <a href="<?= site_url("guru/cekActivate/" . $ujian['id_ud'])?>"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
